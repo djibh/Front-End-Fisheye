@@ -1,5 +1,5 @@
 function photographerFactory(data) {
-  const { name, city, country, tagline, price, portrait } = data;
+  const { id, name, city, country, tagline, price, portrait } = data;
 
   const picture = `assets/photographers/${portrait}`;
 
@@ -13,9 +13,48 @@ function photographerFactory(data) {
     return article;
   }
 
+  function getContactSectionDOM() {
+    const section = document.createElement("section");
+    section.classList.add("contact-section");
+    
+    const nameDiv = document.createElement("div");
+    nameDiv.classList.add("photograph-info")
+    const h2 = document.createElement("h2");
+    h2.textContent = name;
+    const h3 = document.createElement("h3");
+    h3.textContent = `${city}, ${country}`;
+    const h4 = document.createElement("h4");
+    h4.textContent = tagline;
+    nameDiv.appendChild(h2);
+    nameDiv.appendChild(h3);
+    nameDiv.appendChild(h4);
+
+    const contactDiv = document.createElement("div");
+    const button = document.createElement("button");
+    button.innerText = "Contactez-moi";
+    contactDiv.appendChild(button);
+
+    const photoDiv = document.createElement("div");
+    const img = document.createElement("img");
+    img.setAttribute("src", picture);
+    photoDiv.appendChild(img);
+
+    section.appendChild(nameDiv);
+    section.appendChild(contactDiv);
+    section.appendChild(photoDiv);
+
+    return section;
+  }
+
+//   function getMediaSectionDOM() {
+    
+//   }
+
   function createArticleLink() {
     const link = document.createElement("a");
-    link.setAttribute("href", "/");
+    link.setAttribute("href", "javascript:void(0)");
+    link.setAttribute("id", id);
+    link.classList.add("photograph-link");
     link.setAttribute("alt", name);
     const img = document.createElement("img");
     img.setAttribute("src", picture);
@@ -43,5 +82,5 @@ function photographerFactory(data) {
     return description;
   }
 
-  return { name, picture, getUserCardDOM };
+  return { name, picture, getUserCardDOM, getContactSectionDOM };
 }
