@@ -41,6 +41,11 @@ h1 {
     flex-direction: column;
 }
 
+.photographer_section article a {
+    text-decoration: none;
+    text-align: center;
+}
+
 
 .photographer_section article img {
     height: 200px;
@@ -71,6 +76,7 @@ h1 {
 .photographer_section article h3
  {
     font-size: 1rem;
+    color: #901C1C;
 }
 
 .photographer_section article h4, h5 {
@@ -78,5 +84,5 @@ h1 {
 }
 
 .photographer_section article h5 {
-    color: #777;
+    color: #757575;
 }
