@@ -15,22 +15,22 @@
 }
 
 .contact-section h2 {
-    margin: 0;
-    margin-bottom: 0.7rem;
-    font-size: 3rem;
+  margin: 0;
+  margin-bottom: 0.7rem;
+  font-size: 3rem;
 }
 
 .contact-section h3 {
-    margin: 0;
-    margin-bottom: 2rem;
-    font-size: 2rem;
+  margin: 0;
+  margin-bottom: 2rem;
+  font-size: 2rem;
 }
 
 .contact-section h4 {
-    margin: 0;
-    margin-bottom: 2rem;
-    font-size: 1.3rem;
-    color: #525252;
+  margin: 0;
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+  color: #525252;
 }
 
 .contact-section button {
@@ -44,7 +44,7 @@
 }
 
 .contact-section button:hover {
-  background-color: #911c1c;
+  background-color: #db8876;
   color: #000;
 }
 
@@ -130,4 +130,33 @@ form input {
   height: 68px;
   border: none;
   border-radius: 5px;
+}
+
+#media-section {
+  max-width: 1400px;
+  margin: 3em auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3em;
+}
+
+#media-section article {
+  width: 400px;
+  /* max-height: 200px; */
+}
+
+
+#media-section img {
+  width: 100%;
+  border-radius: 0;
+}
+
+#media-section .user-media__description {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#media-section .user-media__description * {
+  font-size: 1em;
 }

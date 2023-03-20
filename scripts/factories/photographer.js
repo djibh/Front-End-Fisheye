@@ -1,6 +1,6 @@
 function photographerFactory(data) {
   const { id, name, city, country, tagline, price, portrait } = data;
-
+    
   const picture = `assets/photographers/${portrait}`;
 
   function getUserCardDOM() {
@@ -16,39 +16,15 @@ function photographerFactory(data) {
   function getContactSectionDOM() {
     const section = document.createElement("section");
     section.classList.add("contact-section");
-    
-    const nameDiv = document.createElement("div");
-    nameDiv.classList.add("photograph-info")
-    const h2 = document.createElement("h2");
-    h2.textContent = name;
-    const h3 = document.createElement("h3");
-    h3.textContent = `${city}, ${country}`;
-    const h4 = document.createElement("h4");
-    h4.textContent = tagline;
-    nameDiv.appendChild(h2);
-    nameDiv.appendChild(h3);
-    nameDiv.appendChild(h4);
-
-    const contactDiv = document.createElement("div");
-    const button = document.createElement("button");
-    button.innerText = "Contactez-moi";
-    contactDiv.appendChild(button);
-
-    const photoDiv = document.createElement("div");
-    const img = document.createElement("img");
-    img.setAttribute("src", picture);
-    photoDiv.appendChild(img);
+    const nameDiv = createNameDiv();
+    const contactDiv = createContactDiv();
+    const photoDiv = createPhotoDiv();
 
     section.appendChild(nameDiv);
     section.appendChild(contactDiv);
     section.appendChild(photoDiv);
-
     return section;
   }
-
-//   function getMediaSectionDOM() {
-    
-//   }
 
   function createArticleLink() {
     const link = document.createElement("a");
@@ -80,6 +56,40 @@ function photographerFactory(data) {
     description.appendChild(priceTag);
 
     return description;
+  }
+
+  function createNameDiv() {
+    const nameDiv = document.createElement("div");
+    nameDiv.classList.add("photograph-info");
+    const h2 = document.createElement("h2");
+    h2.textContent = name;
+    const h3 = document.createElement("h3");
+    h3.textContent = `${city}, ${country}`;
+    const h4 = document.createElement("h4");
+    h4.textContent = tagline;
+    nameDiv.appendChild(h2);
+    nameDiv.appendChild(h3);
+    nameDiv.appendChild(h4);
+
+    return nameDiv;
+  }
+
+  function createContactDiv() {
+    const contactDiv = document.createElement("div");
+    const button = document.createElement("button");
+    button.innerText = "Contactez-moi";
+    contactDiv.appendChild(button);
+
+    return contactDiv;
+  }
+
+  function createPhotoDiv() {
+    const photoDiv = document.createElement("div");
+    const img = document.createElement("img");
+    img.setAttribute("src", picture);
+    photoDiv.appendChild(img);
+
+    return photoDiv;
   }
 
   return { name, picture, getUserCardDOM, getContactSectionDOM };
