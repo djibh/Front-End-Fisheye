@@ -141,13 +141,13 @@ form input {
 }
 
 #media-section article {
-  width: 400px;
-  /* max-height: 200px; */
+  width: 350px;
 }
 
 
-#media-section img {
+#media-section .user-media {
   width: 100%;
+  aspect-ratio: 4/3;
   border-radius: 0;
 }
 
@@ -155,8 +155,27 @@ form input {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 #media-section .user-media__description * {
-  font-size: 1em;
+  padding: 0.8rem 0;
+  font-size: 1.4em;
 }
+
+#media-section .user-media__title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+} 
+
+#media-section .user-media__likes {
+  padding: 0 1rem;
+}
+
+/* #media-section .user-media__likes::after {
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  content: "\f004";
+} */
