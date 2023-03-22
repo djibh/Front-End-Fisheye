@@ -149,6 +149,7 @@ form input {
   width: 100%;
   aspect-ratio: 4/3;
   border-radius: 0;
+  cursor: pointer;
 }
 
 #media-section .user-media__description {
@@ -183,10 +184,11 @@ form input {
 
 .close-btn {
   position: fixed;
-  top: 1em;
-  right: 1em;
-  font-size: 3rem;
+  top: 10px;
+  right: 30px;
   cursor: pointer;
+  font-size: 3.5rem;
+  color: #555;
 }
 
 .fa-solid {
@@ -199,11 +201,11 @@ form input {
 }
 
 .fa-chevron-left {
-  left: 5em;
+  left: 2em;
 }
 
 .fa-chevron-right {
-  right: 5em;
+  right: 2em;
 }
 
 .modal-gallery__media {
@@ -215,4 +217,10 @@ form input {
   max-width: 1200px;
   margin: auto;
   text-align: center;
+}
+
+.modal-gallery__media img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: cover;
 }

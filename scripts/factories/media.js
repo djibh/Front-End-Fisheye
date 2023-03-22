@@ -46,5 +46,21 @@ function mediaFactory (data) {
     article.appendChild(description);
     return article;
   }
-  return { getMediaCardDOM };
+
+  function getModalMediaDOM () {
+    if (image) {
+      const modalImage = document.createElement('img');
+      modalImage.setAttribute('src', mediaPath + image);
+      return modalImage;
+    } else {
+      const modalVideo = document.createElement('video');
+      modalVideo.setAttribute('src', mediaPath + video);
+      modalVideo.setAttribute('type', 'video/mp4');
+      modalVideo.setAttribute('controls', '');
+      modalVideo.style.width = '100%';
+      return modalVideo;
+    }
+  }
+
+  return { getMediaCardDOM, getModalMediaDOM };
 }

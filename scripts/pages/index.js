@@ -1,5 +1,7 @@
 const modal = document.querySelector('.modal-gallery');
 const closeBtn = document.querySelector('.close-btn');
+// const galleryMedia = document.querySelector('.modal-gallery__media');
+const modalMediaData = [];
 
 async function getPhotographers () {
   const requestData = await fetch('./data/photographers.json');
@@ -54,15 +56,20 @@ async function getProfileContent (id, photographers, medias) {
   const photographerMedias = medias.filter(
     (media) => media.photographerId === parseInt(id)
   );
-  photographerMedias.forEach((media) => {
-    const mediaModel = mediaFactory(media);
-    const mediaCardDOM = mediaModel.getMediaCardDOM();
 
+  for (let idx = 0; idx < photographerMedias.length; idx++) {
+    const mediaModel = mediaFactory(photographerMedias[idx]);
+
+    const mediaCardDOM = mediaModel.getMediaCardDOM();
+    // const modalMedias = mediaModel.getModalMediaDOM();
+
+    modalMediaData.push(photographerMedias[idx]);
     mediaList.appendChild(mediaCardDOM);
-    mediaCardDOM.addEventListener('click', function () {
-      showModal(modal);
+
+    mediaCardDOM.firstChild.addEventListener('click', function () {
+      showModal(modal, idx, modalMediaData);
     });
-  });
+  }
   closeBtn.addEventListener('click', () => hideModal(modal));
 
   photographersSection.appendChild(mediaList);
