@@ -174,8 +174,45 @@ form input {
   padding: 0 1rem;
 }
 
-/* #media-section .user-media__likes::after {
-  position: absolute;
-  font-family: "Font Awesome 5 Free";
-  content: "\f004";
-} */
+.modal-gallery {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255,255,0.7);
+}
+
+.close-btn {
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.fa-solid {
+  font-size: 3em;
+  color: #555;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.fa-chevron-left {
+  left: 5em;
+}
+
+.fa-chevron-right {
+  right: 5em;
+}
+
+.modal-gallery__media {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}

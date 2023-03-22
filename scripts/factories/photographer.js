@@ -1,10 +1,10 @@
-function photographerFactory(data) {
+function photographerFactory (data) {
   const { id, name, city, country, tagline, price, portrait } = data;
-    
+
   const picture = `assets/photographers/${portrait}`;
 
-  function getUserCardDOM() {
-    const article = document.createElement("article");
+  function getUserCardDOM () {
+    const article = document.createElement('article');
     const link = createArticleLink();
     const description = createArticleDescription();
 
@@ -13,9 +13,9 @@ function photographerFactory(data) {
     return article;
   }
 
-  function getContactSectionDOM() {
-    const section = document.createElement("section");
-    section.classList.add("contact-section");
+  function getContactSectionDOM () {
+    const section = document.createElement('section');
+    section.classList.add('contact-section');
     const nameDiv = createNameDiv();
     const contactDiv = createContactDiv();
     const photoDiv = createPhotoDiv();
@@ -26,15 +26,15 @@ function photographerFactory(data) {
     return section;
   }
 
-  function createArticleLink() {
-    const link = document.createElement("a");
-    link.setAttribute("href", "javascript:void(0)");
-    link.setAttribute("id", id);
-    link.classList.add("photograph-link");
-    link.setAttribute("alt", name);
-    const img = document.createElement("img");
-    img.setAttribute("src", picture);
-    const h2 = document.createElement("h2");
+  function createArticleLink () {
+    const link = document.createElement('a');
+    link.setAttribute('href', 'javascript:void(0)');
+    link.setAttribute('id', id);
+    link.classList.add('photograph-link');
+    link.setAttribute('alt', name);
+    const img = document.createElement('img');
+    img.setAttribute('src', picture);
+    const h2 = document.createElement('h2');
     h2.textContent = name;
     link.appendChild(img);
     link.appendChild(h2);
@@ -42,14 +42,14 @@ function photographerFactory(data) {
     return link;
   }
 
-  function createArticleDescription() {
-    const description = document.createElement("div");
-    description.classList.add("description");
-    const location = document.createElement("h3");
+  function createArticleDescription () {
+    const description = document.createElement('div');
+    description.classList.add('description');
+    const location = document.createElement('h3');
     location.textContent = `${city}, ${country}`;
-    const tagLine = document.createElement("h4");
+    const tagLine = document.createElement('h4');
     tagLine.textContent = tagline;
-    const priceTag = document.createElement("h5");
+    const priceTag = document.createElement('h5');
     priceTag.textContent = `${price}€/jour`;
     description.appendChild(location);
     description.appendChild(tagLine);
@@ -58,14 +58,14 @@ function photographerFactory(data) {
     return description;
   }
 
-  function createNameDiv() {
-    const nameDiv = document.createElement("div");
-    nameDiv.classList.add("photograph-info");
-    const h2 = document.createElement("h2");
+  function createNameDiv () {
+    const nameDiv = document.createElement('div');
+    nameDiv.classList.add('photograph-info');
+    const h2 = document.createElement('h2');
     h2.textContent = name;
-    const h3 = document.createElement("h3");
+    const h3 = document.createElement('h3');
     h3.textContent = `${city}, ${country}`;
-    const h4 = document.createElement("h4");
+    const h4 = document.createElement('h4');
     h4.textContent = tagline;
     nameDiv.appendChild(h2);
     nameDiv.appendChild(h3);
@@ -74,19 +74,19 @@ function photographerFactory(data) {
     return nameDiv;
   }
 
-  function createContactDiv() {
-    const contactDiv = document.createElement("div");
-    const button = document.createElement("button");
-    button.innerText = "Contactez-moi";
+  function createContactDiv () {
+    const contactDiv = document.createElement('div');
+    const button = document.createElement('button');
+    button.innerText = 'Contactez-moi';
     contactDiv.appendChild(button);
 
     return contactDiv;
   }
 
-  function createPhotoDiv() {
-    const photoDiv = document.createElement("div");
-    const img = document.createElement("img");
-    img.setAttribute("src", picture);
+  function createPhotoDiv () {
+    const photoDiv = document.createElement('div');
+    const img = document.createElement('img');
+    img.setAttribute('src', picture);
     photoDiv.appendChild(img);
 
     return photoDiv;
