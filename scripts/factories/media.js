@@ -19,6 +19,7 @@ function mediaFactory (data) {
     const heartIcon = document.createElement('i');
     heartIcon.classList.add('fa-regular');
     heartIcon.classList.add('fa-heart');
+    heartIcon.classList.add('outlined');
 
     description.appendChild(mediaTitle);
     description.appendChild(likeCount);
@@ -48,17 +49,29 @@ function mediaFactory (data) {
   }
 
   function getModalMediaDOM () {
+    const article = document.createElement('article');
+    article.style.textAlign = 'left';
+    const mediaTitle = document.createElement('h4');
+    mediaTitle.innerText = title;
+    mediaTitle.style.fontSize = '1.2rem';
+
     if (image) {
       const modalImage = document.createElement('img');
       modalImage.setAttribute('src', mediaPath + image);
-      return modalImage;
+
+      article.appendChild(modalImage);
+      article.appendChild(mediaTitle);
+      return article;
     } else {
       const modalVideo = document.createElement('video');
       modalVideo.setAttribute('src', mediaPath + video);
       modalVideo.setAttribute('type', 'video/mp4');
       modalVideo.setAttribute('controls', '');
       modalVideo.style.width = '100%';
-      return modalVideo;
+
+      article.appendChild(modalVideo);
+      article.appendChild(mediaTitle);
+      return article;
     }
   }
 

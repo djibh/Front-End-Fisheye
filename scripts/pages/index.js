@@ -57,19 +57,14 @@ async function getProfileContent (id, photographers, medias) {
     (media) => media.photographerId === parseInt(id)
   );
 
-  for (let idx = 0; idx < photographerMedias.length; idx++) {
-    const mediaModel = mediaFactory(photographerMedias[idx]);
-
+  photographerMedias.forEach((media, idx) => {
+    const mediaModel = mediaFactory(media);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
-    // const modalMedias = mediaModel.getModalMediaDOM();
-
-    modalMediaData.push(photographerMedias[idx]);
+    modalMediaData.push(media);
     mediaList.appendChild(mediaCardDOM);
 
-    mediaCardDOM.firstChild.addEventListener('click', function () {
-      showModal(modal, idx, modalMediaData);
-    });
-  }
+    mediaCardDOM.firstChild.addEventListener('click', () => showModal(modal, idx, modalMediaData));
+  });
   closeBtn.addEventListener('click', () => hideModal(modal));
 
   photographersSection.appendChild(mediaList);
