@@ -12,14 +12,14 @@ function mediaFactory (data) {
     mediaTitle.classList.add('user-media__title');
     mediaTitle.innerText = title;
     const likeCount = document.createElement('h4');
-    const likesContainer = document.createElement('div');
-    likesContainer.classList.add('likes-container');
     likeCount.classList.add('user-media__likes');
     likeCount.innerText = likes;
+    const likesContainer = document.createElement('div');
+    likesContainer.classList.add('likes-container');
     const heartIcon = document.createElement('i');
     heartIcon.classList.add('fa-regular');
     heartIcon.classList.add('fa-heart');
-    heartIcon.classList.add('outlined');
+    heartIcon.classList.add('heart-outlined');
 
     description.appendChild(mediaTitle);
     description.appendChild(likeCount);

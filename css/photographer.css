@@ -174,10 +174,40 @@ form input {
   padding: 0 1rem;
 }
 
+#likes-and-fee-tag {
+  position: fixed;
+  bottom: -5px;
+  right: 10%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #db8876;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+#likes-and-fee-tag * {
+  padding: 12px 24px;
+  z-index: 1;
+}
+
+#likes-and-fee-tag__likes {
+  position: relative;
+}
+
+#likes-and-fee-tag__likes::after {
+  position: absolute;
+  font-family: 'Font Awesome 5 Free';
+  content: '\f004';
+  font-weight: 700;
+  padding-left: 8px;
+}
+
 .modal-gallery {
   display: none;
   position: fixed;
   inset: 0;
+  z-index: 5;
   background-color: rgba(255, 255,255,0.93);
 }
 
@@ -212,11 +242,9 @@ form input {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
+  width: 85%;
   max-width: 1200px;
   margin: auto;
-  /* text-align: center; */
-  
 }
 
 .modal-gallery__media img {
