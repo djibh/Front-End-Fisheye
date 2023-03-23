@@ -48,7 +48,24 @@ async function getProfileContent (id, photographers, medias) {
 
   photographersSection.appendChild(mediaList);
 
+  const likeButtons = document.querySelectorAll('.heart-outlined');
+  likeButtons.forEach((button, index) => {
+    button.addEventListener('click', () => handleLikeButton(index));
+  });
+
   showLikesAndDailyFeeTag(photographer);
+}
+
+function handleLikeButton (index) {
+  console.log('Clicked');
+  const totalLikes = document.getElementById('likes-and-fee-tag__likes');
+  const likes = document.querySelectorAll('.user-media__likes');
+  likes[index].setAttribute('data-isLiked', true);
+  let likesValue = parseInt(likes[index].textContent);
+  likesValue += 1;
+  likes[index].innerText = likesValue;
+  const totalLikesValue = parseInt(totalLikes.textContent);
+  totalLikes.innerText = totalLikesValue + 1;
 }
 
 closeBtn.addEventListener('click', () => hideModal());
@@ -111,11 +128,17 @@ function nextMedia () {
 }
 
 /// /// UI /// ///
-function showLikesAndDailyFeeTag (artist) {
+function showLikesAndDailyFeeTag (photographer) {
   let likes = 0;
-  modalMediaData.forEach(media => {
-    likes += media.likes;
+  const articlesLikes = document.querySelectorAll('.user-media__likes');
+
+  articlesLikes.forEach(article => {
+    likes += parseInt(article.textContent);
   });
+
+  // modalMediaData.forEach(media => {
+  //   likes += media.likes;
+  // });
 
   const tagDiv = document.createElement('div');
   tagDiv.setAttribute('id', 'likes-and-fee-tag');
@@ -125,7 +148,7 @@ function showLikesAndDailyFeeTag (artist) {
   tagDiv.appendChild(likesCount);
 
   const dailyFee = document.createElement('h4');
-  dailyFee.innerText = `${artist.price}€/jour`;
+  dailyFee.innerText = `${photographer.price}€/jour`;
   tagDiv.appendChild(dailyFee);
 
   document.body.appendChild(tagDiv);
