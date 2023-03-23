@@ -57,15 +57,24 @@ async function getProfileContent (id, photographers, medias) {
 }
 
 function handleLikeButton (index) {
-  console.log('Clicked');
   const totalLikes = document.getElementById('likes-and-fee-tag__likes');
   const likes = document.querySelectorAll('.user-media__likes');
-  likes[index].setAttribute('data-isLiked', true);
-  let likesValue = parseInt(likes[index].textContent);
-  likesValue += 1;
-  likes[index].innerText = likesValue;
+  const likesValue = parseInt(likes[index].textContent);
   const totalLikesValue = parseInt(totalLikes.textContent);
-  totalLikes.innerText = totalLikesValue + 1;
+  const isLiked = likes[index].getAttribute('data-isLiked');
+
+  if (isLiked === 'false') {
+    likes[index].setAttribute('data-isLiked', true);
+    likes[index].innerText = likesValue + 1;
+    totalLikes.innerText = totalLikesValue + 1;
+    return;
+  }
+
+  if (isLiked === 'true') {
+    likes[index].setAttribute('data-isLiked', false);
+    likes[index].innerText = likesValue - 1;
+    totalLikes.innerText = totalLikesValue - 1;
+  }
 }
 
 closeBtn.addEventListener('click', () => hideModal());

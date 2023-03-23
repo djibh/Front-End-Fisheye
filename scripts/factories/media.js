@@ -13,6 +13,7 @@ function mediaFactory (data) {
     mediaTitle.innerText = title;
     const likeCount = document.createElement('h4');
     likeCount.classList.add('user-media__likes');
+    likeCount.setAttribute('data-isLiked', false);
     likeCount.innerText = likes;
     const likesContainer = document.createElement('div');
     likesContainer.classList.add('likes-container');
