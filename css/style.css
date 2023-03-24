@@ -8,8 +8,9 @@ body {
 }
 
 header {
-  margin: 0 4em;
+  margin: 2em auto;
   display: flex;
+  max-width: 1200px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -32,7 +33,7 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
-  margin: 70px auto;
+  margin: 0 auto;
   max-width: 1200px;
 }
 
