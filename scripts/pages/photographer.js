@@ -29,7 +29,7 @@ async function getProfileContent (id, photographers, medias) {
 /// /// /// /// /// /// /// ///
 
 /// /// Keyboard /// ///
-function onArrowsKeydown (e) {
+function _onArrowsKeydown (e) {
   e = e || window.event;
   switch (e.key) {
     case 'ArrowLeft':
@@ -116,19 +116,11 @@ function _buildSortOptions () {
 
   const optionsDOM = document.querySelectorAll('.option');
   optionsDOM.forEach(option => option.addEventListener('click', () => {
-    // option.classList.toggle('active');
+    optionsDOM.forEach(option => {
+      option.classList.toggle('visible');
+    });
 
-    if (option.classList.contains('active')) {
-      option.classList.remove('active');
-      optionsDOM.forEach(option => {
-        option.classList.add('visible');
-      });
-    } else {
-      option.classList.add('active');
-      optionsDOM.forEach(option => {
-        option.classList.remove('visible');
-      });
-    }
+    option.classList.toggle('active');
   }));
 }
 
@@ -143,7 +135,7 @@ function _showModal (index) {
   galleryMedia.appendChild(modalMediaDOM);
   modal.style.display = 'block';
 
-  document.onkeydown = onArrowsKeydown;
+  document.onkeydown = _onArrowsKeydown;
 
   closeBtn.addEventListener('click', _hideModal);
   rightChevron.addEventListener('click', _nextMedia);

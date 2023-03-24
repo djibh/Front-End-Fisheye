@@ -2,7 +2,6 @@
   display: flex;
   margin: 0 auto;
   max-width: 1200px;
-  padding: 2em 0;
   background-color: #fafafa;
 }
 
@@ -16,7 +15,7 @@
 .contact-section h2 {
   margin: 0;
   margin-bottom: 0.7rem;
-  font-size: 3rem;
+  font-size: 2.75rem;
 }
 
 .contact-section h3 {
@@ -38,7 +37,7 @@
   border: none;
   border-radius: 5px;
   color: white;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
@@ -50,8 +49,10 @@
 .contact-section img {
   height: 200px;
   width: 200px;
+  transform: translateX(30%);
   border-radius: 100px;
   object-fit: cover;
+
 }
 
 #contact_modal {
@@ -138,10 +139,10 @@ form input {
   position: relative;
   max-width: 1200px;
   margin: 3em auto;
-  padding-top: 50px;
+  padding-top: 60px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 3em;
+  gap: 4em;
 }
 
 /* Sorting rules */
@@ -149,7 +150,7 @@ form input {
   display: flex;
   margin: auto;
   position: absolute;
-  top: -40px;
+  top: -20px;
   /* padding: 2em; */
   width: 100%;
   align-items: baseline;
@@ -182,6 +183,7 @@ form input {
   margin-bottom: 3px;
   background-color: #911c1c;
   color: white;
+  cursor: pointer;
 }
 
 #options-list .active {
@@ -190,10 +192,6 @@ form input {
 
 #options-list .visible {
   display: block;
-}
-
-#options-list.active ~ li {
-  display: none;
 }
 
 #media-section article {
@@ -231,17 +229,35 @@ form input {
   padding: 0 1rem;
 }
 
-#media-section .user-media__likes .heart-outlined {
+.heart-outlined {
   position: relative;
 }
 
-#media-section .user-media__likes .heart-outlined::after {
+.heart-outlined[data-isLiked='true']::after {
+  scale: 1.01;
   font-family: 'Font Awesome 5 Free';
   content: "\f004";
   position: absolute;
-  top: 0;
-  left: 5px;
-  font-weight: 700;
+  color: #911C1C;
+  font-weight: 600;
+}
+
+.heart-outlined::after {
+  scale: 0;
+  font-family: 'Font Awesome 5 Free';
+  content: "\f004";
+  position: absolute;
+  color: #911C1C;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-weight: 600;
+  transition: .15s;
+}
+
+.heart-outlined:hover:after {
+  display: block;
+  scale: 1.01;
 }
 
 #likes-and-fee-tag {
