@@ -21,6 +21,7 @@ function mediaFactory (data) {
     heartIcon.classList.add('fa-regular');
     heartIcon.classList.add('fa-heart');
     heartIcon.classList.add('heart-outlined');
+    heartIcon.setAttribute('data-isLiked', false);
 
     description.appendChild(mediaTitle);
     description.appendChild(likeCount);
