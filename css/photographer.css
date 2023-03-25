@@ -146,9 +146,6 @@ form input {
   border-radius: 5px;
 }
 
-
-
-
 #media-section {
   position: relative;
   max-width: 1200px;
@@ -167,7 +164,7 @@ form input {
   width: 100%;
   top: -10px;
   align-items: baseline;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 #options-list {

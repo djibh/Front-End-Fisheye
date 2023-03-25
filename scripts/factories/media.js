@@ -6,6 +6,7 @@ function mediaFactory (data) {
 
   function getMediaCardDOM () {
     const article = document.createElement('article');
+    article.classList.add('media-card');
     const description = document.createElement('div');
     description.classList.add('user-media__description');
     const mediaTitle = document.createElement('h4');

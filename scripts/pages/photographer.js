@@ -1,12 +1,16 @@
-// Mettre le code JavaScript lié à la page photographer.html
+
+// Create section for photographer medias
+const mediaList = document.createElement('section');
+mediaList.setAttribute('id', 'media-section');
+// Create section for gallery modal
 const modal = document.querySelector('.modal-gallery');
 const galleryMedia = document.querySelector('.modal-gallery__media');
 const closeBtn = document.querySelector('.close-btn');
 const leftChevron = document.querySelector('.fa-chevron-left');
 const rightChevron = document.querySelector('.fa-chevron-right');
 const photographersSection = document.querySelector('.photographer_section');
-const modalMediaData = [];
 let photographer;
+let photographerMedias = [];
 let currentIndex;
 
 // gestion du sort
@@ -18,10 +22,30 @@ async function getProfileContent (id, photographers, medias) {
   document.querySelector('header').querySelector('h1').innerHTML = '';
 
   _getPhotographer(id, photographers);
+  _getPhotographerMedias(photographer.id, medias);
+
   _buildContactSection(id, photographers);
   _buildMediasGallery(id, medias);
-  _buildSortOptions();
+  console.log('====================================');
+  console.log(photographerMedias);
+  console.log('====================================');
+  _buildSortOptions(medias);
   _buildLikesAndDailyFeeTag(photographer);
+
+  const optionsDOM = document.querySelectorAll('.option');
+  optionsDOM.forEach(option => option.addEventListener('click', () => {
+    optionsDOM.forEach(option => {
+      option.classList.toggle('visible');
+    });
+
+    option.classList.toggle('active');
+    if (option.classList.contains('active')) {
+      _handleSortClick(option.getAttribute('name'));
+      document.querySelectorAll('.media-card').forEach(article => article.remove());
+
+      _buildMediasGallery(id, photographerMedias);
+    }
+  }));
 }
 
 /// /// /// /// /// /// /// ///
@@ -51,6 +75,12 @@ function _getPhotographer (id, photographers) {
   );
 }
 
+function _getPhotographerMedias (id, medias) {
+  photographerMedias = medias.filter(
+    (media) => media.photographerId === parseInt(id)
+  );
+}
+
 function _buildContactSection (id, photographers) {
   // Clear photographer section for SPA navigation
   photographersSection.innerHTML = '';
@@ -62,20 +92,13 @@ function _buildContactSection (id, photographers) {
   photographersSection.appendChild(profileDom);
 }
 
-function _buildMediasGallery (id, medias) {
-  // Create section for photographer medias
-  const mediaList = document.createElement('section');
-  mediaList.setAttribute('id', 'media-section');
-
+function _buildMediasGallery () {
   // Isolate and display photographer medias
-  const photographerMedias = medias.filter(
-    (media) => media.photographerId === parseInt(id)
-  );
 
   photographerMedias.forEach((media, idx) => {
     const mediaModel = mediaFactory(media);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
-    modalMediaData.push(media);
+
     mediaList.appendChild(mediaCardDOM);
 
     mediaCardDOM.firstChild.addEventListener('click', () => _showModal(idx));
@@ -90,12 +113,13 @@ function _buildMediasGallery (id, medias) {
 
 function _buildSortOptions () {
   const optionsLabel = ['Popularité', 'Date', 'Titre'];
+  const optionsName = ['likes', 'date', 'title'];
 
   const mediaSection = document.getElementById('media-section');
   const dropdownSortContainer = document.createElement('div');
   dropdownSortContainer.setAttribute('id', 'sort-container');
   const sortTitle = document.createElement('h3');
-  sortTitle.innerText = 'Trier';
+  sortTitle.innerText = 'Trier par';
 
   const optionsList = document.createElement('ul');
   optionsList.setAttribute('id', 'options-list');
@@ -103,6 +127,7 @@ function _buildSortOptions () {
   optionsLabel.forEach((label, idx) => {
     const optionLabel = document.createElement('li');
     optionLabel.classList.add('option');
+    optionLabel.setAttribute('name', optionsName[idx]);
     optionLabel.innerText = label;
 
     idx !== 0 || optionLabel.classList.add('active');
@@ -113,23 +138,18 @@ function _buildSortOptions () {
   dropdownSortContainer.appendChild(sortTitle);
   dropdownSortContainer.appendChild(optionsList);
   mediaSection.appendChild(dropdownSortContainer);
-
-  const optionsDOM = document.querySelectorAll('.option');
-  optionsDOM.forEach(option => option.addEventListener('click', () => {
-    optionsDOM.forEach(option => {
-      option.classList.toggle('visible');
-    });
-
-    option.classList.toggle('active');
-  }));
 }
 
-function _handleSortClick () {}
+function _handleSortClick (prop) {
+  photographerMedias.sort(function (a, b) {
+    if (a[prop] < b[prop]) { return -1; } else { return 1; }
+  });
+}
 
 /// /// Modal /// ///
 function _showModal (index) {
   currentIndex = index;
-  modalMediaModel = mediaFactory(modalMediaData[currentIndex]);
+  modalMediaModel = mediaFactory(photographerMedias[currentIndex]);
   modalMediaDOM = modalMediaModel.getModalMediaDOM();
 
   galleryMedia.appendChild(modalMediaDOM);
@@ -148,19 +168,19 @@ function _hideModal () {
 }
 
 function _replaceModalContent () {
-  modalMediaDOM = mediaFactory(modalMediaData[currentIndex]).getModalMediaDOM();
+  modalMediaDOM = mediaFactory(photographerMedias[currentIndex]).getModalMediaDOM();
   galleryMedia.firstChild.replaceWith(modalMediaDOM);
 }
 
 function _prevMedia () {
   currentIndex <= 0
-    ? (currentIndex = modalMediaData.length - 1)
+    ? (currentIndex = photographerMedias.length - 1)
     : currentIndex--;
   _replaceModalContent();
 }
 
 function _nextMedia () {
-  currentIndex >= modalMediaData.length - 1
+  currentIndex >= photographerMedias.length - 1
     ? (currentIndex = 0)
     : currentIndex++;
   _replaceModalContent();
@@ -170,7 +190,7 @@ function _nextMedia () {
 function _buildLikesAndDailyFeeTag (photographer) {
   let likes = 0;
 
-  modalMediaData.forEach((media) => {
+  photographerMedias.forEach((media) => {
     likes += media.likes;
   });
 
