@@ -4,9 +4,9 @@ const submitBtn = document.getElementById('contact-submit-btn');
 
 contactCloseBtn.addEventListener('click', closeContactModal);
 
-// submitBtn.addEventListener('click', (e) => {
-//   e.preventDefault();
-// });
+submitBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+});
 
 function displayModal () {
   contactModal.style.display = 'block';

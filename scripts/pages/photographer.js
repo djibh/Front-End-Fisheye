@@ -201,7 +201,7 @@ function _buildContactForm () {
   contactName.innerText = photographer.name;
   const form = document.createElement('form');
   form.setAttribute('id', 'contact-form');
-  form.setAttribute('method', 'POST');
+  form.setAttribute('method', '');
   form.setAttribute('action', 'index.html');
   form.setAttribute('name', 'signup');
   form.innerHTML = '<label for="last-name">Prénom</label>' +
@@ -219,4 +219,8 @@ function _buildContactForm () {
   // handle errors
 
   // handle data on submit
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log('Form is submitted');
+  });
 }
