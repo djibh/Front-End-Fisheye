@@ -204,14 +204,14 @@ function _buildContactForm () {
   form.setAttribute('method', '');
   form.setAttribute('action', 'index.html');
   form.setAttribute('name', 'signup');
-  form.innerHTML = '<label for="last-name">Prénom</label>' +
-      '<input name="last-name" id="last-name"></input>' +
-      '<label for="first-name">Name</label>' +
-      '<input name="first-name" id="first-name"></input>' +
-      '<label for="email">Email</label>' +
-      '<input name="email" id="email"></input>' +
-      '<label for="message">Votre message</label>' +
-      '<textarea name="message" id="message"></textarea>' +
+  form.innerHTML = '<label for="contact-lastName">Prénom</label>' +
+      '<input name="contact-lastName" id="contact-lastName"></input>' +
+      '<label for="contact-firstName">Name</label>' +
+      '<input name="contact-firstName" id="contact-firstName"></input>' +
+      '<label for="contact-email">Email</label>' +
+      '<input name="contact-email" id="contact-email"></input>' +
+      '<label for="contact-message">Votre message</label>' +
+      '<textarea name="contact-message" id="contact-message"></textarea>' +
       '<button id="contact-submit-btn" type="submit">Envoyer</button>';
 
   contactModal.appendChild(form);
@@ -219,8 +219,21 @@ function _buildContactForm () {
   // handle errors
 
   // handle data on submit
+
+  // form fields
+  const contactFirstName = document.getElementById('contact-firstName');
+  const contactLastName = document.getElementById('contact-lastName');
+  const contactEmail = document.getElementById('contact-email');
+  const contactMessage = document.getElementById('contact-message');
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log('Form is submitted');
+    console.log('====================================');
+    console.log(`Prénom: ${contactFirstName.value}`);
+    console.log(`Nom: ${contactLastName.value}`);
+    console.log(`Email: ${contactEmail.value}`);
+    console.log(`Message: ${contactMessage.value}`);
+    console.log('====================================');
+    console.log('Form successfully submitted!');
   });
 }
