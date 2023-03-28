@@ -1,17 +1,12 @@
-
 // Create section for photographer medias
 const mediaList = document.createElement('section');
 mediaList.setAttribute('id', 'media-section');
 // Create section for gallery modal
-const modal = document.querySelector('.modal-gallery');
-const galleryMedia = document.querySelector('.modal-gallery__media');
-const closeBtn = document.querySelector('.close-btn');
-const leftChevron = document.querySelector('.fa-chevron-left');
-const rightChevron = document.querySelector('.fa-chevron-right');
+
 const photographersSection = document.querySelector('.photographer_section');
+// const form = document.forms['contact-form'];
 let photographer;
 let photographerMedias = [];
-let currentIndex;
 
 // gestion du sort
 // gestion des likes
@@ -25,10 +20,8 @@ async function getProfileContent (id, photographers, medias) {
   _getPhotographerMedias(photographer.id, medias);
 
   _buildContactSection(id, photographers);
+  _buildContactForm();
   _buildMediasGallery(id, medias);
-  console.log('====================================');
-  console.log(photographerMedias);
-  console.log('====================================');
   _buildSortOptions(medias);
   _buildLikesAndDailyFeeTag(photographer);
 
@@ -48,12 +41,16 @@ async function getProfileContent (id, photographers, medias) {
   }));
 }
 
+// form.addEventListener('submit', (e) => {
+//   e.preventDefault();
+// });
+
 /// /// /// /// /// /// /// ///
 /// /// Helper functions /// ///
 /// /// /// /// /// /// /// ///
 
 /// /// Keyboard /// ///
-function _onArrowsKeydown (e) {
+function onArrowsKeydown (e) {
   e = e || window.event;
   switch (e.key) {
     case 'ArrowLeft':
@@ -63,7 +60,10 @@ function _onArrowsKeydown (e) {
       _nextMedia();
       break;
     case 'Escape':
-      _hideModal();
+      if (modal.style.display === 'block') { hideModal(); }
+      if (contactModal.style.display === 'block') { closeContactModal(); }
+
+      // hideModal();
       break;
   }
 }
@@ -90,6 +90,8 @@ function _buildContactSection (id, photographers) {
   const photographerModel = photographerFactory(photographer);
   const profileDom = photographerModel.getContactSectionDOM();
   photographersSection.appendChild(profileDom);
+
+  document.querySelector('.contact-button').addEventListener('click', displayModal);
 }
 
 function _buildMediasGallery () {
@@ -101,7 +103,7 @@ function _buildMediasGallery () {
 
     mediaList.appendChild(mediaCardDOM);
 
-    mediaCardDOM.firstChild.addEventListener('click', () => _showModal(idx));
+    mediaCardDOM.firstChild.addEventListener('click', () => showModal(idx));
   });
   photographersSection.appendChild(mediaList);
 
@@ -123,11 +125,14 @@ function _buildSortOptions () {
 
   const optionsList = document.createElement('ul');
   optionsList.setAttribute('id', 'options-list');
+  optionsList.setAttribute('role', 'list');
 
   optionsLabel.forEach((label, idx) => {
     const optionLabel = document.createElement('li');
     optionLabel.classList.add('option');
     optionLabel.setAttribute('name', optionsName[idx]);
+    optionLabel.setAttribute('aria-selected', 'false');
+    optionLabel.setAttribute('aria-label', optionsLabel[idx]);
     optionLabel.innerText = label;
 
     idx !== 0 || optionLabel.classList.add('active');
@@ -144,46 +149,6 @@ function _handleSortClick (prop) {
   photographerMedias.sort(function (a, b) {
     if (a[prop] < b[prop]) { return -1; } else { return 1; }
   });
-}
-
-/// /// Modal /// ///
-function _showModal (index) {
-  currentIndex = index;
-  modalMediaModel = mediaFactory(photographerMedias[currentIndex]);
-  modalMediaDOM = modalMediaModel.getModalMediaDOM();
-
-  galleryMedia.appendChild(modalMediaDOM);
-  modal.style.display = 'block';
-
-  document.onkeydown = _onArrowsKeydown;
-
-  closeBtn.addEventListener('click', _hideModal);
-  rightChevron.addEventListener('click', _nextMedia);
-  leftChevron.addEventListener('click', _prevMedia);
-}
-
-function _hideModal () {
-  modal.style.display = 'none';
-  galleryMedia.innerHTML = '';
-}
-
-function _replaceModalContent () {
-  modalMediaDOM = mediaFactory(photographerMedias[currentIndex]).getModalMediaDOM();
-  galleryMedia.firstChild.replaceWith(modalMediaDOM);
-}
-
-function _prevMedia () {
-  currentIndex <= 0
-    ? (currentIndex = photographerMedias.length - 1)
-    : currentIndex--;
-  _replaceModalContent();
-}
-
-function _nextMedia () {
-  currentIndex >= photographerMedias.length - 1
-    ? (currentIndex = 0)
-    : currentIndex++;
-  _replaceModalContent();
 }
 
 /// /// UI /// ///
@@ -227,4 +192,31 @@ function _handleLikeButton (index) {
     likes[index].innerText = likesValue - 1;
     totalLikes.innerText = totalLikesValue - 1;
   }
+}
+
+function _buildContactForm () {
+  // build dom in existing modal
+  const contactModal = document.getElementById('contact-modal');
+  const contactName = document.getElementById('contact-modal__photographer-name');
+  contactName.innerText = photographer.name;
+  const form = document.createElement('form');
+  form.setAttribute('id', 'contact-form');
+  form.setAttribute('method', 'POST');
+  form.setAttribute('action', 'index.html');
+  form.setAttribute('name', 'signup');
+  form.innerHTML = '<label for="last-name">Prénom</label>' +
+      '<input name="last-name" id="last-name"></input>' +
+      '<label for="first-name">Name</label>' +
+      '<input name="first-name" id="first-name"></input>' +
+      '<label for="email">Email</label>' +
+      '<input name="email" id="email"></input>' +
+      '<label for="message">Votre message</label>' +
+      '<textarea name="message" id="message"></textarea>' +
+      '<button id="contact-submit-btn" type="submit">Envoyer</button>';
+
+  contactModal.appendChild(form);
+
+  // handle errors
+
+  // handle data on submit
 }

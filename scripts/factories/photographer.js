@@ -77,6 +77,7 @@ function photographerFactory (data) {
   function createContactDiv () {
     const contactDiv = document.createElement('div');
     const button = document.createElement('button');
+    button.classList.add('contact-button');
     button.innerText = 'Contactez-moi';
     contactDiv.appendChild(button);
 

@@ -53,7 +53,6 @@ function mediaFactory (data) {
 
   function getModalMediaDOM () {
     const article = document.createElement('article');
-    article.style.textAlign = 'left';
     const mediaTitle = document.createElement('h4');
     mediaTitle.innerText = title;
     mediaTitle.style.fontSize = '1.2rem';
