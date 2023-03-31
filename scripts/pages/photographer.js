@@ -4,7 +4,6 @@ mediaList.setAttribute('id', 'media-section');
 // Create section for gallery modal
 
 const photographersSection = document.querySelector('.photographer_section');
-let contactForm;
 let photographer;
 let photographerMedias = [];
 
@@ -36,10 +35,10 @@ async function getProfileContent (id, photographers, medias) {
     }
   }));
 
-  contactForm.addEventListener('submit', (e) => {
-    e.prevenDefault();
-    formValidation();
-  });
+  // contactForm.addEventListener('submit', (e) => {
+  //   e.prevenDefault();
+  //   formValidation();
+  // });
 }
 
 /// /// /// /// /// /// /// ///
@@ -216,66 +215,4 @@ function _buildContactForm () {
       '<button id="contact-submit-btn" type="submit">Envoyer</button>';
 
   contactModal.appendChild(form);
-
-  // handle errors
-
-  // handle data on submit
-
-  // form fields
-  // const contactFirstName = document.getElementById('contact-firstName');
-  // const contactLastName = document.getElementById('contact-lastName');
-  // const contactEmail = document.getElementById('contact-email');
-  // const contactMessage = document.getElementById('contact-message');
-
-  contactForm = form;
-
-  // form.addEventListener('submit', (e) => {
-  //   e.preventDefault();
-  //   console.log('====================================');
-  //   console.log(`Prénom: ${contactFirstName.value}`);
-  //   console.log(`Nom: ${contactLastName.value}`);
-  //   console.log(`Email: ${contactEmail.value}`);
-  //   console.log(`Message: ${contactMessage.value}`);
-  //   console.log('====================================');
-  //   console.log('Form successfully submitted!');
-  // });
-  return contactForm;
-}
-
-function formValidation () {
-  const contactFirstName = document.getElementById('contact-firstName');
-  const contactLastName = document.getElementById('contact-lastName');
-  const contactEmail = document.getElementById('contact-email');
-  const contactMessage = document.getElementById('contact-message');
-
-  if (contactFirstName.value === '') {
-    alert('Veuillez indiquer votre prénom.');
-    return false;
-  }
-
-  if (contactLastName.value === '') {
-    alert('Veuillez indiquer votre nom.');
-    return false;
-  }
-
-  const regex = /\$+@\S+\.\S+/;
-  if (contactEmail.value === '' || !regex.test(email.value)) {
-    alert('Veuillez indiquer votre adresse mail.');
-    return false;
-  }
-
-  if (contactMessage.value === '') {
-    alert('Veuillez ajouter un message.');
-    return false;
-  }
-
-  console.log('====================================');
-  console.log(`Prénom: ${contactFirstName.value}`);
-  console.log(`Nom: ${contactLastName.value}`);
-  console.log(`Email: ${contactEmail.value}`);
-  console.log(`Message: ${contactMessage.value}`);
-  console.log('====================================');
-  console.log('Form successfully submitted!');
-
-  form.submit();
 }

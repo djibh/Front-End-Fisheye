@@ -1,6 +1,13 @@
 #contact-modal {
   display: none;
   max-width: 500px;
+  z-index: 5;
+}
+
+#contact-modal-lightbox {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
 #contact-modal header {
