@@ -7,6 +7,8 @@ function mediaFactory (data) {
   function getMediaCardDOM () {
     const article = document.createElement('article');
     article.classList.add('media-card');
+    const link = document.createElement('a');
+    link.setAttribute('href', '#');
     const description = document.createElement('div');
     description.classList.add('user-media__description');
     const mediaTitle = document.createElement('h4');
@@ -32,14 +34,17 @@ function mediaFactory (data) {
       const thumbnail = document.createElement('img');
       thumbnail.classList.add('user-media');
       thumbnail.setAttribute('src', mediaPath + image);
+      thumbnail.setAttribute('alt', title);
       thumbnail.style.objectFit = 'cover';
       thumbnail.style.width = '350px';
       thumbnail.style.height = '300px';
-      article.appendChild(thumbnail);
+      link.appendChild(thumbnail);
+      article.appendChild(link);
     } else {
       const userVideo = document.createElement('video');
       userVideo.setAttribute('src', mediaPath + video);
       userVideo.setAttribute('type', 'video/mp4');
+      userVideo.setAttribute('alt', title);
       userVideo.style.objectFit = 'cover';
       userVideo.style.width = '350px';
       userVideo.style.height = '300px';
@@ -60,6 +65,7 @@ function mediaFactory (data) {
     if (image) {
       const modalImage = document.createElement('img');
       modalImage.setAttribute('src', mediaPath + image);
+      modalImage.setAttribute('alt', title);
 
       article.appendChild(modalImage);
       article.appendChild(mediaTitle);
@@ -68,6 +74,7 @@ function mediaFactory (data) {
       const modalVideo = document.createElement('video');
       modalVideo.setAttribute('src', mediaPath + video);
       modalVideo.setAttribute('type', 'video/mp4');
+      modalVideo.setAttribute('alt', title);
       modalVideo.setAttribute('controls', '');
       modalVideo.style.width = '100%';
 

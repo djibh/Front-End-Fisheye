@@ -4,13 +4,9 @@ mediaList.setAttribute('id', 'media-section');
 // Create section for gallery modal
 
 const photographersSection = document.querySelector('.photographer_section');
-// const form = document.forms['contact-form'];
+let contactForm;
 let photographer;
 let photographerMedias = [];
-
-// gestion du sort
-// gestion des likes
-// gestion de la modal de contact
 
 // gestion des médias
 async function getProfileContent (id, photographers, medias) {
@@ -39,11 +35,12 @@ async function getProfileContent (id, photographers, medias) {
       _buildMediasGallery(id, photographerMedias);
     }
   }));
-}
 
-// form.addEventListener('submit', (e) => {
-//   e.preventDefault();
-// });
+  contactForm.addEventListener('submit', (e) => {
+    e.prevenDefault();
+    formValidation();
+  });
+}
 
 /// /// /// /// /// /// /// ///
 /// /// Helper functions /// ///
@@ -129,11 +126,15 @@ function _buildSortOptions () {
 
   optionsLabel.forEach((label, idx) => {
     const optionLabel = document.createElement('li');
+    optionLabelLink = document.createElement('a');
+    optionLabelLink.setAttribute('href', '#');
+    optionLabelLink.setAttribute('aria-label', optionsName[idx]);
     optionLabel.classList.add('option');
     optionLabel.setAttribute('name', optionsName[idx]);
-    optionLabel.setAttribute('aria-selected', 'false');
-    optionLabel.setAttribute('aria-label', optionsLabel[idx]);
-    optionLabel.innerText = label;
+    optionLabelLink.setAttribute('aria-selected', 'false');
+    optionLabelLink.setAttribute('aria-label', optionsLabel[idx]);
+    optionLabelLink.innerText = label;
+    optionLabel.appendChild(optionLabelLink);
 
     idx !== 0 || optionLabel.classList.add('active');
 
@@ -142,7 +143,7 @@ function _buildSortOptions () {
 
   dropdownSortContainer.appendChild(sortTitle);
   dropdownSortContainer.appendChild(optionsList);
-  mediaSection.appendChild(dropdownSortContainer);
+  mediaSection.insertBefore(dropdownSortContainer, mediaSection.firstChild);
 }
 
 function _handleSortClick (prop) {
@@ -205,13 +206,13 @@ function _buildContactForm () {
   form.setAttribute('action', 'index.html');
   form.setAttribute('name', 'signup');
   form.innerHTML = '<label for="contact-lastName">Prénom</label>' +
-      '<input name="contact-lastName" id="contact-lastName"></input>' +
+      '<input type="text" name="contact-lastName" id="contact-lastName" autofocus />' +
       '<label for="contact-firstName">Name</label>' +
-      '<input name="contact-firstName" id="contact-firstName"></input>' +
+      '<input type="text" name="contact-firstName" id="contact-firstName">' +
       '<label for="contact-email">Email</label>' +
-      '<input name="contact-email" id="contact-email"></input>' +
+      '<input type="email" name="contact-email" id="contact-email">' +
       '<label for="contact-message">Votre message</label>' +
-      '<textarea name="contact-message" id="contact-message"></textarea>' +
+      '<textarea type="text" name="contact-message" id="contact-message"></textarea>' +
       '<button id="contact-submit-btn" type="submit">Envoyer</button>';
 
   contactModal.appendChild(form);
@@ -221,19 +222,60 @@ function _buildContactForm () {
   // handle data on submit
 
   // form fields
+  // const contactFirstName = document.getElementById('contact-firstName');
+  // const contactLastName = document.getElementById('contact-lastName');
+  // const contactEmail = document.getElementById('contact-email');
+  // const contactMessage = document.getElementById('contact-message');
+
+  contactForm = form;
+
+  // form.addEventListener('submit', (e) => {
+  //   e.preventDefault();
+  //   console.log('====================================');
+  //   console.log(`Prénom: ${contactFirstName.value}`);
+  //   console.log(`Nom: ${contactLastName.value}`);
+  //   console.log(`Email: ${contactEmail.value}`);
+  //   console.log(`Message: ${contactMessage.value}`);
+  //   console.log('====================================');
+  //   console.log('Form successfully submitted!');
+  // });
+  return contactForm;
+}
+
+function formValidation () {
   const contactFirstName = document.getElementById('contact-firstName');
   const contactLastName = document.getElementById('contact-lastName');
   const contactEmail = document.getElementById('contact-email');
   const contactMessage = document.getElementById('contact-message');
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    console.log('====================================');
-    console.log(`Prénom: ${contactFirstName.value}`);
-    console.log(`Nom: ${contactLastName.value}`);
-    console.log(`Email: ${contactEmail.value}`);
-    console.log(`Message: ${contactMessage.value}`);
-    console.log('====================================');
-    console.log('Form successfully submitted!');
-  });
+  if (contactFirstName.value === '') {
+    alert('Veuillez indiquer votre prénom.');
+    return false;
+  }
+
+  if (contactLastName.value === '') {
+    alert('Veuillez indiquer votre nom.');
+    return false;
+  }
+
+  const regex = /\$+@\S+\.\S+/;
+  if (contactEmail.value === '' || !regex.test(email.value)) {
+    alert('Veuillez indiquer votre adresse mail.');
+    return false;
+  }
+
+  if (contactMessage.value === '') {
+    alert('Veuillez ajouter un message.');
+    return false;
+  }
+
+  console.log('====================================');
+  console.log(`Prénom: ${contactFirstName.value}`);
+  console.log(`Nom: ${contactLastName.value}`);
+  console.log(`Email: ${contactEmail.value}`);
+  console.log(`Message: ${contactMessage.value}`);
+  console.log('====================================');
+  console.log('Form successfully submitted!');
+
+  form.submit();
 }

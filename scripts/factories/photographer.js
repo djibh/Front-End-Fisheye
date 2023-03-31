@@ -30,6 +30,7 @@ function photographerFactory (data) {
     const link = document.createElement('a');
     link.setAttribute('href', 'javascript:void(0)');
     link.setAttribute('id', id);
+    link.setAttribute('alt', name);
     link.classList.add('photograph-link');
     link.setAttribute('alt', name);
     const img = document.createElement('img');
@@ -88,6 +89,7 @@ function photographerFactory (data) {
     const photoDiv = document.createElement('div');
     const img = document.createElement('img');
     img.setAttribute('src', picture);
+    img.setAttribute('alt', name);
     photoDiv.appendChild(img);
 
     return photoDiv;
