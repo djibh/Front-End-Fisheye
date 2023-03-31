@@ -17,8 +17,11 @@ function showModal (index) {
   document.onkeydown = onArrowsKeydown;
 
   closeBtn.addEventListener('click', hideModal);
+  closeBtn.setAttribute('aria-label', 'Fermeture du média');
   rightChevron.addEventListener('click', _nextMedia);
+  rightChevron.setAttribute('aria-label', 'Média suivant');
   leftChevron.addEventListener('click', _prevMedia);
+  leftChevron.setAttribute('aria-label', 'Média précédent');
 }
 
 function hideModal () {
