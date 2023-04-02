@@ -36,21 +36,19 @@ function mediaFactory (data) {
       thumbnail.classList.add('user-media');
       thumbnail.setAttribute('src', mediaPath + image);
       thumbnail.setAttribute('alt', title);
-      thumbnail.style.objectFit = 'cover';
-      thumbnail.style.width = '350px';
-      thumbnail.style.height = '300px';
       link.appendChild(thumbnail);
       article.appendChild(link);
     } else {
+      const videoDiv = document.createElement('div');
+      videoDiv.classList.add('video-icon-container');
       const userVideo = document.createElement('video');
+      userVideo.classList.add('user-media');
       userVideo.setAttribute('src', mediaPath + video);
       userVideo.setAttribute('type', 'video/mp4');
-      userVideo.setAttribute('alt', title);
-      userVideo.style.objectFit = 'cover';
-      userVideo.style.width = '350px';
-      userVideo.style.height = '300px';
+      userVideo.setAttribute('title', title);
 
-      article.appendChild(userVideo);
+      videoDiv.appendChild(userVideo);
+      article.appendChild(videoDiv);
     }
 
     article.appendChild(description);
