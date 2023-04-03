@@ -10,6 +10,7 @@ function mediaFactory (data) {
     const link = document.createElement('a');
     link.setAttribute('href', '#');
     link.setAttribute('aria-label', title);
+    link.setAttribute('aria-haspopup', 'dialog');
     const description = document.createElement('div');
     description.classList.add('user-media__description');
     const mediaTitle = document.createElement('h4');
@@ -65,7 +66,6 @@ function mediaFactory (data) {
       const modalImage = document.createElement('img');
       modalImage.setAttribute('src', mediaPath + image);
       modalImage.setAttribute('alt', title);
-
       article.appendChild(modalImage);
       article.appendChild(mediaTitle);
       return article;

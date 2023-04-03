@@ -13,6 +13,9 @@ function showModal (index) {
 
   galleryMedia.appendChild(modalMediaDOM);
   modal.style.display = 'block';
+  modal.setAttribute('aria-modal', 'true');
+  modal.setAttribute('aria-hidden', 'false');
+  mainDocument.setAttribute('aria-hidden', 'true');
 
   document.onkeydown = onArrowsKeydown;
 
@@ -27,6 +30,8 @@ function showModal (index) {
 function hideModal () {
   modal.style.display = 'none';
   galleryMedia.innerHTML = '';
+  modal.setAttribute('aria-hidden', 'true');
+  mainDocument.setAttribute('aria-hidden', 'false');
 }
 
 function _prevMedia () {

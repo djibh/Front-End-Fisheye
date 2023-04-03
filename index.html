@@ -13,7 +13,7 @@
         <a href="/" alt="Fisheye Home Page" aria-label="Page d'accueil Fisheye"><img src="assets/images/logo.png" alt="logo Fisheye" class="logo" /></a>
         <h1>Nos photographes</h1>
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
         <div class="photographer_section"></div>
         <div id="contact-modal" class="modal">
           <header>
@@ -24,8 +24,8 @@
             <button type= "button" class="contact-modal__close-btn" title="Fermeture du formulaire" aria-label="Fermeture du formulaire de contact">&times;</button>
           </header>
         </div>
-        <div class="modal-gallery">
-          <button type= "button" class="close-btn" title="Fermeture de la gallerie" aria-label="Fermeture de la gallerie photo">&times;</button>
+        <div role="dialog" class="modal-gallery">
+          <button type= "button" class="close-btn" aria-haspopup="dialog" title="Fermeture de la gallerie" aria-label="Fermeture de la gallerie photo">&times;</button>
           <div class="modal-gallery__body">
             <div><i class="fa-solid fa-chevron-left"></i></div>
             <div class="modal-gallery__media"></div>

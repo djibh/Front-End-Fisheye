@@ -1,5 +1,6 @@
 const contactCloseBtn = document.querySelector('.contact-modal__close-btn');
 const contactModal = document.getElementById('contact-modal');
+const mainDocument = document.getElementById('main');
 
 contactCloseBtn.addEventListener('click', closeContactModal);
 
@@ -7,20 +8,26 @@ function displayModal () {
   // create white lightbox for contact form
   const lightbox = document.createElement('div');
   lightbox.setAttribute('id', 'contact-modal-lightbox');
+  mainDocument.setAttribute('aria-hidden', 'true');
   document.body.appendChild(lightbox);
 
   contactModal.style.display = 'block';
+  contactModal.setAttribute('aria-modal', 'true');
+  contactModal.setAttribute('aria-hidden', 'false');
   document.getElementById('contact-lastName').focus();
 
   const contactForm = document.forms['contact-form'];
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     formValidation();
+    closeContactModal();
   });
 }
 
 function closeContactModal () {
   contactModal.style.display = 'none';
+  contactModal.setAttribute('aria-hidden', 'true');
+  mainDocument.setAttribute('aria-hidden', 'false');
   document.getElementById('contact-modal-lightbox').remove();
 }
 
