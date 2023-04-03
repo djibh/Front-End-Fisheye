@@ -10,7 +10,7 @@ function _buildSortOptions () {
 
   const optionsList = document.createElement('ul');
   optionsList.setAttribute('id', 'options-list');
-  optionsList.setAttribute('role', 'list');
+  optionsList.setAttribute('tabindex', '0');
 
   optionsLabel.forEach((label, idx) => {
     const optionLabel = document.createElement('li');

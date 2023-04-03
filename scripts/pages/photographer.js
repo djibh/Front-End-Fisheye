@@ -35,6 +35,13 @@ async function getProfileContent (id, photographers, medias) {
       _buildMediasGallery(id, photographerMedias);
     }
   }));
+
+  const optionsList = document.getElementById('options-list');
+  optionsList.addEventListener('focus', () => {
+    optionsDOM.forEach(option => {
+      option.classList.toggle('visible');
+    });
+  });
 }
 
 /// /// /// /// /// /// /// ///
@@ -158,7 +165,7 @@ function _buildContactForm () {
   form.setAttribute('action', 'index.html');
   form.setAttribute('name', 'signup');
   form.innerHTML = '<label for="contact-lastName">Prénom</label>' +
-      '<input type="text" name="contact-lastName" id="contact-lastName" autofocus />' +
+      '<input type="text" name="contact-lastName" id="contact-lastName" aria-labelledBy autofocus />' +
       '<label for="contact-firstName">Nom</label>' +
       '<input type="text" name="contact-firstName" id="contact-firstName">' +
       '<label for="contact-email">Email</label>' +
