@@ -311,15 +311,23 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 85%;
   max-width: 900px;
-  margin: auto;
-  text-align: center;
+}
+
+.media-container {
+  position: relative;
+}
+
+.media-container[data-title]::after {
+  position: absolute;
+  content: attr(data-title);
+  bottom: -1.6em;
+  color: #911C1C;
+  font-size: 1.3em;
 }
 
 .modal-gallery__media img {
-  width: 100%;
-  max-height: 80vh;
+  max-height: 85vh;
   object-fit: cover;
 }
 
@@ -331,7 +339,3 @@
   border-radius: 5px;
 }
 
-.modal-gallery__media h4 {
-  width: 100%;
-  color: #901C1C
-}

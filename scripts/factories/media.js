@@ -58,6 +58,9 @@ function mediaFactory (data) {
 
   function getModalMediaDOM () {
     const article = document.createElement('article');
+    const mediaDiv = document.createElement('div');
+    mediaDiv.classList.add('media-container');
+    mediaDiv.setAttribute('data-title', title);
     const mediaTitle = document.createElement('h4');
     mediaTitle.innerText = title;
     mediaTitle.style.fontSize = '1.2rem';
@@ -66,8 +69,9 @@ function mediaFactory (data) {
       const modalImage = document.createElement('img');
       modalImage.setAttribute('src', mediaPath + image);
       modalImage.setAttribute('alt', title);
-      article.appendChild(modalImage);
-      article.appendChild(mediaTitle);
+      mediaDiv.appendChild(modalImage);
+      article.appendChild(mediaDiv);
+      // article.appendChild(mediaTitle);
       return article;
     } else {
       const modalVideo = document.createElement('video');
@@ -77,8 +81,9 @@ function mediaFactory (data) {
       modalVideo.setAttribute('controls', '');
       modalVideo.style.width = '100%';
 
-      article.appendChild(modalVideo);
-      article.appendChild(mediaTitle);
+      mediaDiv.appendChild(modalVideo);
+      article.appendChild(mediaDiv);
+      // article.appendChild(mediaTitle);
       return article;
     }
   }
