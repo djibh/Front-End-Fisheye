@@ -22,6 +22,8 @@ function showModal (index) {
   rightChevron.setAttribute('aria-label', 'Média suivant');
   leftChevron.addEventListener('click', _prevMedia);
   leftChevron.setAttribute('aria-label', 'Média précédent');
+
+  galleryMedia.focus();
 }
 
 function hideModal () {
