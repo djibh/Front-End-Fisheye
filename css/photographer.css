@@ -283,6 +283,8 @@
   cursor: pointer;
   font-size: 4rem;
   color: #901C1C;
+  background-color: transparent;
+  border: none;
 }
 
 .fa-solid {
