@@ -107,7 +107,7 @@
   top: -10px;
   align-items: baseline;
   font-size: 1.15rem;
-  z-index: 5;
+  z-index: 1;
 }
 
 #options-list {
@@ -166,6 +166,7 @@
 
 .media-card {
   position: relative;
+  z-index: 0;
 }
 
 .video-icon-container {

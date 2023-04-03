@@ -35,11 +35,6 @@ async function getProfileContent (id, photographers, medias) {
       _buildMediasGallery(id, photographerMedias);
     }
   }));
-
-  // contactForm.addEventListener('submit', (e) => {
-  //   e.prevenDefault();
-  //   formValidation();
-  // });
 }
 
 /// /// /// /// /// /// /// ///
@@ -60,7 +55,6 @@ function onArrowsKeydown (e) {
       if (modal.style.display === 'block') { hideModal(); }
       if (contactModal.style.display === 'block') { closeContactModal(); }
 
-      // hideModal();
       break;
   }
 }
