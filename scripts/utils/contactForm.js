@@ -15,7 +15,7 @@ function displayModal () {
   contactModal.setAttribute('aria-modal', 'true');
   contactModal.setAttribute('aria-hidden', 'false');
   document.getElementById('contact-lastName').focus();
-  trapFocus();
+  trapFocusContactModal();
 
   const contactForm = document.forms['contact-form'];
   contactForm.addEventListener('submit', (e) => {
@@ -66,7 +66,7 @@ function formValidation () {
 }
 
 function trapFocusContactModal () {
-  const focusItems = contactModal.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])');
+  const focusItems = contactModal.querySelectorAll('button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled])');
   const firstFocusItem = focusItems[0];
   const lastFocusItem = focusItems[focusItems.length - 1];
 
