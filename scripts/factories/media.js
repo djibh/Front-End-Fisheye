@@ -79,7 +79,6 @@ function mediaFactory (data) {
       modalVideo.setAttribute('type', 'video/mp4');
       modalVideo.setAttribute('alt', title);
       modalVideo.setAttribute('controls', '');
-      modalVideo.style.width = '100%';
 
       mediaDiv.appendChild(modalVideo);
       article.appendChild(mediaDiv);

@@ -55,7 +55,6 @@
 .contact-section div:nth-child(3) {
   position: relative;
   flex: auto;
-  
 }
 
 .contact-section img {
@@ -122,7 +121,7 @@
 
 #options-list::after {
   position: absolute;
-  content: '';
+  content: "";
   top: 24px;
   right: 12px;
   transform: translateY(-50%);
@@ -175,13 +174,13 @@
 
 .video-icon-container::after {
   position: absolute;
-  font-family: 'Font Awesome 6 free';
-  content: '\f144';
+  font-family: "Font Awesome 6 free";
+  content: "\f144";
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 6em;
-  color: rgba(255, 255,255,0.75);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 #media-section .user-media__description {
@@ -201,7 +200,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   flex: 1;
-} 
+}
 
 #media-section .user-media__likes {
   padding: 0 1rem;
@@ -213,15 +212,15 @@
 
 .heart-outlined::after {
   scale: 0;
-  font-family: 'Font Awesome 5 Free';
+  font-family: "Font Awesome 5 Free";
   content: "\f004";
   position: absolute;
-  color: #901C1C;
+  color: #901c1c;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
   font-weight: 600;
-  transition: .08s ease-in;
+  transition: 0.08s ease-in;
 }
 
 .heart-outlined:hover:after {
@@ -229,12 +228,12 @@
   scale: 1.01;
 }
 
-.heart-outlined[data-isLiked='true']::after {
+.heart-outlined[data-isLiked="true"]::after {
   scale: 1.01;
-  font-family: 'Font Awesome 5 Free';
+  font-family: "Font Awesome 5 Free";
   content: "\f004";
   position: absolute;
-  color: #901C1C;
+  color: #901c1c;
   font-weight: 600;
 }
 
@@ -262,8 +261,8 @@
 
 #likes-and-fee-tag__likes::after {
   position: absolute;
-  font-family: 'Font Awesome 5 Free';
-  content: '\f004';
+  font-family: "Font Awesome 5 Free";
+  content: "\f004";
   font-weight: 700;
   padding-left: 8px;
 }
@@ -273,7 +272,7 @@
   position: fixed;
   inset: 0;
   z-index: 5;
-  background-color: rgba(255, 255,255,0.93);
+  background-color: rgba(255, 255, 255, 0.93);
 }
 
 .close-btn {
@@ -282,7 +281,7 @@
   right: 30px;
   cursor: pointer;
   font-size: 4rem;
-  color: #901C1C;
+  color: #901c1c;
   background-color: transparent;
   border: none;
 }
@@ -298,12 +297,12 @@
 
 .fa-chevron-left {
   left: 2em;
-  color: #901C1C;
+  color: #901c1c;
 }
 
 .fa-chevron-right {
   right: 2em;
-  color: #901C1C;
+  color: #901c1c;
 }
 
 .modal-gallery__media {
@@ -322,12 +321,13 @@
   position: absolute;
   content: attr(data-title);
   bottom: -1.6em;
-  color: #911C1C;
+  left: 0;
+  color: #911c1c;
   font-size: 1.3em;
 }
 
 .modal-gallery__media img {
-  max-height: 85vh;
+max-height: 85          ;
   object-fit: cover;
 }
 
@@ -335,7 +335,13 @@
   text-align: left;
 }
 
-.modal-gallery__media img, video {
+.modal-gallery__media img,
+video {
   border-radius: 5px;
+  width: 100%;
 }
 
+.modal-gallery__media h4 {
+  width: 100%;
+  color: #901c1c;
+}

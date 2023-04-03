@@ -15,6 +15,7 @@ function displayModal () {
   contactModal.setAttribute('aria-modal', 'true');
   contactModal.setAttribute('aria-hidden', 'false');
   document.getElementById('contact-lastName').focus();
+  trapFocus();
 
   const contactForm = document.forms['contact-form'];
   contactForm.addEventListener('submit', (e) => {
@@ -62,4 +63,30 @@ function formValidation () {
   console.log(`Message: ${contactMessage.value}`);
   console.log('====================================');
   console.log('Form successfully submitted!');
+}
+
+function trapFocusContactModal () {
+  const focusItems = contactModal.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])');
+  const firstFocusItem = focusItems[0];
+  const lastFocusItem = focusItems[focusItems.length - 1];
+
+  contactModal.addEventListener('keydown', function (e) {
+    const isTabPressed = (e.key === 'Tab');
+
+    if (!isTabPressed) { return; }
+
+    // if shift + tab is pressed (preventDefault avoids button to be skipped over)
+    if (e.shiftKey) {
+      if (document.activeElement === firstFocusItem) {
+        lastFocusItem.focus();
+        e.preventDefault();
+      }
+      // else = tab only is pressed
+    } else {
+      if (document.activeElement === lastFocusItem) {
+        firstFocusItem.focus();
+        e.preventDefault();
+      }
+    }
+  });
 }
