@@ -11,6 +11,7 @@ function _buildSortOptions () {
   const optionsList = document.createElement('ul');
   optionsList.setAttribute('id', 'options-list');
   optionsList.setAttribute('tabindex', '0');
+  optionsList.setAttribute('aria-label', 'Liste des options de tri');
 
   optionsLabel.forEach((label, idx) => {
     const optionLabel = document.createElement('li');
