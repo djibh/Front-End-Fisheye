@@ -78,6 +78,9 @@ function photographerFactory (data) {
   function createContactDiv () {
     const contactDiv = document.createElement('div');
     const button = document.createElement('button');
+    button.setAttribute('type', 'button');
+    button.setAttribute('title', 'Bouton de contact');
+    button.setAttribute('aria-label', 'Bouton d\'ouverture du formulaire de contact');
     button.classList.add('contact-button');
     button.innerText = 'Contactez-moi';
     contactDiv.appendChild(button);
