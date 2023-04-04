@@ -88,7 +88,7 @@ function buildMediasGallery () {
 
   const likeButtons = document.querySelectorAll('.heart-outlined');
   likeButtons.forEach((button, index) => {
-    button.addEventListener('click', () => _handleLikeButton(index));
+    button.addEventListener('click', () => handleLikeButton(index));
   });
 }
 
