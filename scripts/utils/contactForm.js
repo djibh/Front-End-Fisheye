@@ -15,46 +15,46 @@ function displayModal () {
   contactModal.style.display = 'block';
   contactModal.setAttribute('aria-modal', 'true');
   contactModal.setAttribute('aria-hidden', 'false');
-  document.getElementById('contact-lastName').focus();
+  // document.getElementById('contact-lastName').focus();
   trapFocusContactModal();
 
   const contactForm = document.forms['contact-form'];
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    formValidation();
-    closeContactModal();
+    formValidation(contactForm);
+    alert('Message envoyé avec succès !');
   });
 }
 
-function closeContactModal () {
-  contactModal.style.display = 'none';
-  contactModal.setAttribute('aria-hidden', 'true');
-  mainDocument.setAttribute('aria-hidden', 'false');
-  document.getElementById('contact-modal-lightbox').remove();
-}
-
-function formValidation () {
+function formValidation (form) {
   const contactFirstName = document.getElementById('contact-firstName');
   const contactLastName = document.getElementById('contact-lastName');
   const contactEmail = document.getElementById('contact-email');
   const contactMessage = document.getElementById('contact-message');
 
-  if (contactFirstName.value === '') {
-    return alert('Veuillez indiquer votre prénom.');
+  if (contactLastName.value === '') {
+    alert('Veuillez indiquer votre prénom.');
+    // contactLastName.setAttribute('placeholder', 'Veuillez renseigner votre nom');
+    // contactLastName.style.backgroundColor = 'rgba(255,200,200,0.5)';
+    return;
   }
 
-  if (contactLastName.value === '') {
-    return alert('Veuillez indiquer votre nom.');
+  if (contactFirstName.value === '') {
+    alert('Veuillez indiquer votre nom.');
+    // contactFirstName.setAttribute('placeholder', 'Veuillez renseigner votre prénom');
+    // contactFirstName.style.backgroundColor = 'rgba(255,200,200,0.5)';
+    return;
   }
 
   const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
   if (contactEmail.value === '' || !regex.test(contactEmail.value)) {
-    return alert('Veuillez indiquer votre adresse mail.');
+    alert('Veuillez indiquer votre adresse mail.');
+    return;
   }
 
   if (contactMessage.value === '') {
     alert('Veuillez ajouter un message.');
-    return false;
+    return;
   }
 
   console.log('====================================');
@@ -64,6 +64,16 @@ function formValidation () {
   console.log(`Message: ${contactMessage.value}`);
   console.log('====================================');
   console.log('Form successfully submitted!');
+
+  form.reset();
+  closeContactModal();
+}
+
+function closeContactModal () {
+  contactModal.style.display = 'none';
+  contactModal.setAttribute('aria-hidden', 'true');
+  mainDocument.setAttribute('aria-hidden', 'false');
+  document.getElementById('contact-modal-lightbox').remove();
 }
 
 function trapFocusContactModal () {
