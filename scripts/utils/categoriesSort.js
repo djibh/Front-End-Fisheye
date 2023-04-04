@@ -12,20 +12,26 @@ function _buildSortOptions () {
   optionsList.setAttribute('id', 'options-list');
   optionsList.setAttribute('tabindex', '0');
   optionsList.setAttribute('aria-label', 'Liste des options de tri');
+  optionsList.setAttribute('role', 'listbox');
 
   optionsLabel.forEach((label, idx) => {
     const optionLabel = document.createElement('li');
-    optionLabelLink = document.createElement('a');
+    const optionLabelLink = document.createElement('a');
     optionLabelLink.setAttribute('href', '#');
     optionLabelLink.setAttribute('aria-label', optionsName[idx]);
     optionLabel.classList.add('option');
     optionLabel.setAttribute('name', optionsName[idx]);
     optionLabelLink.setAttribute('aria-selected', 'false');
     optionLabelLink.setAttribute('aria-label', optionsLabel[idx]);
+    optionLabelLink.setAttribute('role', 'option');
     optionLabelLink.innerText = label;
     optionLabel.appendChild(optionLabelLink);
 
-    idx !== 0 || optionLabel.classList.add('active');
+    // idx !== 0 || optionLabel.classList.add('active');
+    if (idx === 0) {
+      optionLabel.classList.add('active');
+      optionLabelLink.setAttribute('aria-selected', 'true');
+    }
 
     optionsList.appendChild(optionLabel);
   });

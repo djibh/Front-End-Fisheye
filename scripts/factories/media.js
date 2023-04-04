@@ -10,7 +10,6 @@ function mediaFactory (data) {
     const link = document.createElement('a');
     link.setAttribute('href', '#');
     link.setAttribute('aria-label', title);
-    link.setAttribute('aria-haspopup', 'dialog');
     const description = document.createElement('div');
     description.classList.add('user-media__description');
     const mediaTitle = document.createElement('h4');
@@ -49,7 +48,8 @@ function mediaFactory (data) {
       userVideo.setAttribute('title', title);
 
       videoDiv.appendChild(userVideo);
-      article.appendChild(videoDiv);
+      link.appendChild(videoDiv);
+      article.appendChild(link);
     }
 
     article.appendChild(description);
@@ -60,7 +60,7 @@ function mediaFactory (data) {
     const article = document.createElement('article');
     const mediaDiv = document.createElement('div');
     mediaDiv.classList.add('media-container');
-    mediaDiv.setAttribute('data-title', title);
+    mediaDiv.setAttribute('tabindex', '0');
     const mediaTitle = document.createElement('h4');
     mediaTitle.innerText = title;
     mediaTitle.style.fontSize = '1.2rem';
@@ -71,7 +71,6 @@ function mediaFactory (data) {
       modalImage.setAttribute('alt', title);
       mediaDiv.appendChild(modalImage);
       article.appendChild(mediaDiv);
-      // article.appendChild(mediaTitle);
       return article;
     } else {
       const modalVideo = document.createElement('video');
@@ -79,10 +78,10 @@ function mediaFactory (data) {
       modalVideo.setAttribute('type', 'video/mp4');
       modalVideo.setAttribute('alt', title);
       modalVideo.setAttribute('controls', '');
+      modalVideo.setAttribute('aria-label', title);
 
       mediaDiv.appendChild(modalVideo);
       article.appendChild(mediaDiv);
-      // article.appendChild(mediaTitle);
       return article;
     }
   }

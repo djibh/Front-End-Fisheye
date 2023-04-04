@@ -327,7 +327,7 @@
 }
 
 .modal-gallery__media img {
-max-height: 85          ;
+  max-height: 85vh;
   object-fit: cover;
 }
 

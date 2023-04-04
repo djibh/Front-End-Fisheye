@@ -35,6 +35,7 @@ function photographerFactory (data) {
     link.setAttribute('alt', name);
     const img = document.createElement('img');
     img.setAttribute('src', picture);
+    img.setAttribute('alt', name);
     const h2 = document.createElement('h2');
     h2.textContent = name;
     link.appendChild(img);
@@ -81,6 +82,7 @@ function photographerFactory (data) {
     button.setAttribute('type', 'button');
     button.setAttribute('title', 'Bouton de contact');
     button.setAttribute('aria-label', 'Bouton d\'ouverture du formulaire de contact');
+    button.setAttribute('aria-haspopup', 'dialog');
     button.classList.add('contact-button');
     button.innerText = 'Contactez-moi';
     contactDiv.appendChild(button);

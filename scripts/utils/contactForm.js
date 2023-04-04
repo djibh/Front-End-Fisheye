@@ -11,6 +11,7 @@ function displayModal () {
   mainDocument.setAttribute('aria-hidden', 'true');
   document.body.appendChild(lightbox);
 
+  // shof contact form
   contactModal.style.display = 'block';
   contactModal.setAttribute('aria-modal', 'true');
   contactModal.setAttribute('aria-hidden', 'false');
@@ -69,9 +70,6 @@ function trapFocusContactModal () {
   const focusItems = contactModal.querySelectorAll('button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled])');
   const firstFocusItem = focusItems[0];
   const lastFocusItem = focusItems[focusItems.length - 1];
-  console.log('====================================');
-  console.log(focusItems[0]);
-  console.log('====================================');
 
   contactModal.addEventListener('keydown', function (e) {
     const isTabPressed = (e.key === 'Tab');

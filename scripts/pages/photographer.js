@@ -157,6 +157,7 @@ function _handleLikeButton (index) {
 function _buildContactForm () {
   // build dom in existing modal
   const contactModal = document.getElementById('contact-modal');
+  contactModal.setAttribute('role', 'dialog');
   const contactName = document.getElementById('contact-modal__photographer-name');
   contactName.innerText = photographer.name;
   const form = document.createElement('form');
