@@ -61,6 +61,7 @@ function mediaFactory (data) {
     const mediaDiv = document.createElement('div');
     mediaDiv.classList.add('media-container');
     mediaDiv.setAttribute('tabindex', '0');
+    mediaDiv.setAttribute('data-title', title);
     const mediaTitle = document.createElement('h4');
     mediaTitle.innerText = title;
     mediaTitle.style.fontSize = '1.2rem';
@@ -68,7 +69,7 @@ function mediaFactory (data) {
     if (image) {
       const modalImage = document.createElement('img');
       modalImage.setAttribute('src', mediaPath + image);
-      modalImage.setAttribute('alt', title);
+      modalImage.setAttribute('aria-labelledby', title);
       mediaDiv.appendChild(modalImage);
       article.appendChild(mediaDiv);
       return article;
@@ -76,9 +77,8 @@ function mediaFactory (data) {
       const modalVideo = document.createElement('video');
       modalVideo.setAttribute('src', mediaPath + video);
       modalVideo.setAttribute('type', 'video/mp4');
-      modalVideo.setAttribute('alt', title);
       modalVideo.setAttribute('controls', '');
-      modalVideo.setAttribute('aria-label', title);
+      modalVideo.setAttribute('aria-labelledby', title);
 
       mediaDiv.appendChild(modalVideo);
       article.appendChild(mediaDiv);

@@ -30,12 +30,10 @@ function photographerFactory (data) {
     const link = document.createElement('a');
     link.setAttribute('href', 'javascript:void(0)');
     link.setAttribute('id', id);
-    link.setAttribute('alt', name);
     link.classList.add('photograph-link');
-    link.setAttribute('alt', name);
     const img = document.createElement('img');
     img.setAttribute('src', picture);
-    img.setAttribute('alt', name);
+    img.setAttribute('aria-labelledby', name);
     const h2 = document.createElement('h2');
     h2.textContent = name;
     link.appendChild(img);

@@ -58,14 +58,21 @@ function _replaceModalContent () {
 
 function trapFocusGalleryModal () {
   const focusItems = contactModal.querySelectorAll('button:not([disabled]), img, video');
-  console.log(focusItems);
   const firstFocusItem = focusItems[0];
   const lastFocusItem = focusItems[focusItems.length - 1];
 
   modal.addEventListener('keydown', function (e) {
     const isTabPressed = (e.key === 'Tab');
+    const isEscapePressed = (e.key === 'Escape');
+    const isRightArrowPressed = (e.key === 'ArrowRight');
+    const isLeftArrowPressed = (e.key === 'ArrowLeft');
 
-    if (!isTabPressed) { return; }
+    if (!isTabPressed) {
+      if (isEscapePressed) { hideModal(); }
+      if (isRightArrowPressed) { _nextMedia(); }
+      if (isLeftArrowPressed) { _prevMedia(); }
+      return;
+    }
 
     // if shift + tab is pressed (preventDefault avoids button to be skipped over)
     if (e.shiftKey) {
