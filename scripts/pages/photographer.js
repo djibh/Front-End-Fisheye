@@ -17,8 +17,9 @@ async function getProfileContent (id, photographers, medias) {
 
   _buildContactSection();
   _buildContactForm();
+  handleSort('likes');
   _buildMediasGallery();
-  _buildSortOptions();
+  buildSortOptions();
   _buildLikesAndDailyFeeTag();
 }
 
