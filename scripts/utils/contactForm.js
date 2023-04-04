@@ -4,6 +4,7 @@ const mainDocument = document.getElementById('main');
 
 contactCloseBtn.addEventListener('click', closeContactModal);
 
+// eslint-disable-next-line no-unused-vars
 function displayModal () {
   // create white lightbox for contact form
   const lightbox = document.createElement('div');
@@ -22,7 +23,6 @@ function displayModal () {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     formValidation(contactForm);
-    alert('Message envoyé avec succès !');
   });
 }
 
@@ -34,15 +34,11 @@ function formValidation (form) {
 
   if (contactLastName.value === '') {
     alert('Veuillez indiquer votre prénom.');
-    // contactLastName.setAttribute('placeholder', 'Veuillez renseigner votre nom');
-    // contactLastName.style.backgroundColor = 'rgba(255,200,200,0.5)';
     return;
   }
 
   if (contactFirstName.value === '') {
     alert('Veuillez indiquer votre nom.');
-    // contactFirstName.setAttribute('placeholder', 'Veuillez renseigner votre prénom');
-    // contactFirstName.style.backgroundColor = 'rgba(255,200,200,0.5)';
     return;
   }
 
@@ -66,6 +62,7 @@ function formValidation (form) {
   console.log('Form successfully submitted!');
 
   form.reset();
+  alert('Message envoyé avec succès !');
   closeContactModal();
 }
 

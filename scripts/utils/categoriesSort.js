@@ -48,6 +48,9 @@ function _buildSortOptions () {
 // eslint-disable-next-line no-unused-vars
 function _handleSortClick (prop) {
   photographerMedias.sort(function (a, b) {
+    if (prop === 'likes') {
+      if (a[prop] > b[prop]) { return -1; } else { return 1; }
+    }
     if (a[prop] < b[prop]) { return -1; } else { return 1; }
   });
 }
