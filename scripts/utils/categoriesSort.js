@@ -42,11 +42,11 @@ function buildSortOptions () {
   mediaSection.insertBefore(dropdownSortContainer, mediaSection.firstChild);
 
   const optionsDOM = document.querySelectorAll('.option');
-  optionsDOM.forEach(option => option.addEventListener('click', (e) => _handleSortDropdownOptions(e, optionsDOM, option)));
+  optionsDOM.forEach(option => option.addEventListener('click', (e) => handleSortDropdownOptions(e, optionsDOM, option)));
 }
 
 // eslint-disable-next-line no-unused-vars
-function _handleSortClick (prop = 'date') {
+function handleSort (prop = 'date') {
   photographerMedias.sort(function (a, b) {
     if (prop === 'likes') {
       if (a[prop] > b[prop]) { return -1; } else { return 1; }
@@ -55,7 +55,7 @@ function _handleSortClick (prop = 'date') {
   });
 }
 
-function _handleSortDropdownOptions (e, domElements, option) {
+function handleSortDropdownOptions (e, domElements, option) {
   e.preventDefault();
   domElements.forEach(option => {
     option.classList.toggle('visible');
@@ -63,9 +63,9 @@ function _handleSortDropdownOptions (e, domElements, option) {
 
   option.classList.toggle('active');
   if (option.classList.contains('active')) {
-    _handleSortClick(option.getAttribute('name'));
+    handleSort(option.getAttribute('name'));
     document.querySelectorAll('.media-card').forEach(article => article.remove());
 
-    _buildMediasGallery();
+    buildMediasGallery();
   }
 }

@@ -12,32 +12,32 @@ async function getProfileContent (id, photographers, medias) {
   // Remove 'Nos Photographes'
   document.querySelector('header').querySelector('h1').innerHTML = '';
 
-  _getPhotographer(id, photographers);
-  _getPhotographerMedias(photographer.id, medias);
+  getPhotographer(id, photographers);
+  getPhotographerMedias(photographer.id, medias);
 
-  _buildContactSection();
-  _buildContactForm();
+  buildContactSection();
+  buildContactForm();
   handleSort('likes');
-  _buildMediasGallery();
+  buildMediasGallery();
   buildSortOptions();
-  _buildLikesAndDailyFeeTag();
+  buildLikesAndDailyFeeTag();
 }
 
 /// /// General /// ///
-function _getPhotographer (id, photographers) {
+function getPhotographer (id, photographers) {
   photographer = photographers.find(
     (photographer) => photographer.id === parseInt(id)
   );
 }
 
-function _getPhotographerMedias (id, medias) {
+function getPhotographerMedias (id, medias) {
   photographerMedias = medias.filter(
     (media) => media.photographerId === parseInt(id)
   );
 }
 
 /// /// UI /// ///
-function _buildContactSection () {
+function buildContactSection () {
   // Clear photographer section for SPA navigation
   photographersSection.innerHTML = '';
   photographersSection.style.display = 'block';
@@ -50,7 +50,7 @@ function _buildContactSection () {
   document.querySelector('.contact-button').addEventListener('click', displayModal);
 }
 
-function _buildContactForm () {
+function buildContactForm () {
   // build dom in existing modal
   const contactModal = document.getElementById('contact-modal');
   contactModal.setAttribute('role', 'dialog');
@@ -75,7 +75,7 @@ function _buildContactForm () {
   contactModal.appendChild(form);
 }
 
-function _buildMediasGallery () {
+function buildMediasGallery () {
   photographerMedias.forEach((media, idx) => {
     const mediaModel = mediaFactory(media);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
@@ -92,7 +92,7 @@ function _buildMediasGallery () {
   });
 }
 
-function _buildLikesAndDailyFeeTag () {
+function buildLikesAndDailyFeeTag () {
   let likes = 0;
 
   photographerMedias.forEach((media) => {
@@ -136,7 +136,7 @@ function onArrowsKeydown (e) {
   }
 }
 
-function _handleLikeButton (index) {
+function handleLikeButton (index) {
   const totalLikes = document.getElementById('likes-and-fee-tag__likes');
   const likes = document.querySelectorAll('.user-media__likes');
   const likeIcons = document.querySelectorAll('.heart-outlined');
