@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function _buildSortOptions () {
   const optionsLabel = ['Popularité', 'Date', 'Titre'];
   const optionsName = ['likes', 'date', 'title'];
@@ -41,6 +42,7 @@ function _buildSortOptions () {
   mediaSection.insertBefore(dropdownSortContainer, mediaSection.firstChild);
 }
 
+// eslint-disable-next-line no-unused-vars
 function _handleSortClick (prop) {
   photographerMedias.sort(function (a, b) {
     if (a[prop] < b[prop]) { return -1; } else { return 1; }

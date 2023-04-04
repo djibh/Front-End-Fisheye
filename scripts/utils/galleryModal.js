@@ -6,6 +6,7 @@ const rightChevron = document.querySelector('.fa-chevron-right');
 let currentIndex;
 
 /// /// Modal /// ///
+// eslint-disable-next-line no-unused-vars
 function showModal (index) {
   currentIndex = index;
   modalMediaModel = mediaFactory(photographerMedias[currentIndex]);

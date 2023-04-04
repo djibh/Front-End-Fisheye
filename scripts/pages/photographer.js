@@ -8,17 +8,18 @@ let photographer;
 let photographerMedias = [];
 
 // gestion des médias
+// eslint-disable-next-line no-unused-vars
 async function getProfileContent (id, photographers, medias) {
   document.querySelector('header').querySelector('h1').innerHTML = '';
 
   _getPhotographer(id, photographers);
   _getPhotographerMedias(photographer.id, medias);
 
-  _buildContactSection(id, photographers);
+  _buildContactSection();
   _buildContactForm();
-  _buildMediasGallery(id, medias);
-  _buildSortOptions(medias);
-  _buildLikesAndDailyFeeTag(photographer);
+  _buildMediasGallery();
+  _buildSortOptions();
+  _buildLikesAndDailyFeeTag();
 
   const optionsDOM = document.querySelectorAll('.option');
   optionsDOM.forEach(option => option.addEventListener('click', (e) => {
@@ -35,35 +36,6 @@ async function getProfileContent (id, photographers, medias) {
       _buildMediasGallery(id, photographerMedias);
     }
   }));
-
-  // const optionsList = document.getElementById('options-list');
-  // optionsList.addEventListener('focus', () => {
-  //   optionsDOM.forEach(option => {
-  //     option.classList.toggle('visible');
-  //   });
-  // });
-}
-
-/// /// /// /// /// /// /// ///
-/// /// Helper functions /// ///
-/// /// /// /// /// /// /// ///
-
-/// /// Keyboard /// ///
-function onArrowsKeydown (e) {
-  e = e || window.event;
-  switch (e.key) {
-    case 'ArrowLeft':
-      _prevMedia();
-      break;
-    case 'ArrowRight':
-      _nextMedia();
-      break;
-    case 'Escape':
-      if (modal.style.display === 'block') { hideModal(); }
-      if (contactModal.style.display === 'block') { closeContactModal(); }
-
-      break;
-  }
 }
 
 /// /// General /// ///
@@ -79,7 +51,8 @@ function _getPhotographerMedias (id, medias) {
   );
 }
 
-function _buildContactSection (id, photographers) {
+/// /// UI /// ///
+function _buildContactSection () {
   // Clear photographer section for SPA navigation
   photographersSection.innerHTML = '';
   photographersSection.style.display = 'block';
@@ -90,68 +63,6 @@ function _buildContactSection (id, photographers) {
   photographersSection.appendChild(profileDom);
 
   document.querySelector('.contact-button').addEventListener('click', displayModal);
-}
-
-function _buildMediasGallery () {
-  // Isolate and display photographer medias
-
-  photographerMedias.forEach((media, idx) => {
-    const mediaModel = mediaFactory(media);
-    const mediaCardDOM = mediaModel.getMediaCardDOM();
-
-    mediaList.appendChild(mediaCardDOM);
-
-    mediaCardDOM.firstChild.addEventListener('click', () => showModal(idx));
-  });
-  photographersSection.appendChild(mediaList);
-
-  const likeButtons = document.querySelectorAll('.heart-outlined');
-  likeButtons.forEach((button, index) => {
-    button.addEventListener('click', () => _handleLikeButton(index));
-  });
-}
-
-/// /// UI /// ///
-function _buildLikesAndDailyFeeTag (photographer) {
-  let likes = 0;
-
-  photographerMedias.forEach((media) => {
-    likes += media.likes;
-  });
-
-  const tagDiv = document.createElement('div');
-  tagDiv.setAttribute('id', 'likes-and-fee-tag');
-  const likesCount = document.createElement('h4');
-  likesCount.setAttribute('id', 'likes-and-fee-tag__likes');
-  likesCount.innerText = likes;
-  tagDiv.appendChild(likesCount);
-
-  const dailyFee = document.createElement('h4');
-  dailyFee.innerText = `${photographer.price}€/jour`;
-  tagDiv.appendChild(dailyFee);
-
-  document.body.appendChild(tagDiv);
-}
-
-function _handleLikeButton (index) {
-  const totalLikes = document.getElementById('likes-and-fee-tag__likes');
-  const likes = document.querySelectorAll('.user-media__likes');
-  const likeIcons = document.querySelectorAll('.heart-outlined');
-  const likesValue = parseInt(likes[index].textContent);
-  const totalLikesValue = parseInt(totalLikes.textContent);
-  const isLiked = likeIcons[index].getAttribute('data-isLiked');
-
-  if (isLiked === 'false') {
-    likeIcons[index].setAttribute('data-isLiked', true);
-    likes[index].innerText = likesValue + 1;
-    totalLikes.innerText = totalLikesValue + 1;
-  }
-
-  if (isLiked === 'true') {
-    likeIcons[index].setAttribute('data-isLiked', false);
-    likes[index].innerText = likesValue - 1;
-    totalLikes.innerText = totalLikesValue - 1;
-  }
 }
 
 function _buildContactForm () {
@@ -177,4 +88,86 @@ function _buildContactForm () {
       '<button id="contact-submit-btn" type="submit">Envoyer</button>';
 
   contactModal.appendChild(form);
+}
+
+function _buildMediasGallery () {
+  photographerMedias.forEach((media, idx) => {
+    const mediaModel = mediaFactory(media);
+    const mediaCardDOM = mediaModel.getMediaCardDOM();
+
+    mediaList.appendChild(mediaCardDOM);
+
+    mediaCardDOM.firstChild.addEventListener('click', () => showModal(idx));
+  });
+  photographersSection.appendChild(mediaList);
+
+  const likeButtons = document.querySelectorAll('.heart-outlined');
+  likeButtons.forEach((button, index) => {
+    button.addEventListener('click', () => _handleLikeButton(index));
+  });
+}
+
+function _buildLikesAndDailyFeeTag () {
+  let likes = 0;
+
+  photographerMedias.forEach((media) => {
+    likes += media.likes;
+  });
+
+  const tagDiv = document.createElement('div');
+  tagDiv.setAttribute('id', 'likes-and-fee-tag');
+  const likesCount = document.createElement('h4');
+  likesCount.setAttribute('id', 'likes-and-fee-tag__likes');
+  likesCount.innerText = likes;
+  tagDiv.appendChild(likesCount);
+
+  const dailyFee = document.createElement('h4');
+  dailyFee.innerText = `${photographer.price}€/jour`;
+  tagDiv.appendChild(dailyFee);
+
+  document.body.appendChild(tagDiv);
+}
+
+/// /// /// /// /// /// /// ///
+/// /// Helper functions /// ///
+/// /// /// /// /// /// /// ///
+
+/// /// Keyboard /// ///
+// eslint-disable-next-line no-unused-vars
+function onArrowsKeydown (e) {
+  e = e || window.event;
+  switch (e.key) {
+    case 'ArrowLeft':
+      _prevMedia();
+      break;
+    case 'ArrowRight':
+      _nextMedia();
+      break;
+    case 'Escape':
+      if (modal.style.display === 'block') { hideModal(); }
+      if (contactModal.style.display === 'block') { closeContactModal(); }
+
+      break;
+  }
+}
+
+function _handleLikeButton (index) {
+  const totalLikes = document.getElementById('likes-and-fee-tag__likes');
+  const likes = document.querySelectorAll('.user-media__likes');
+  const likeIcons = document.querySelectorAll('.heart-outlined');
+  const likesValue = parseInt(likes[index].textContent);
+  const totalLikesValue = parseInt(totalLikes.textContent);
+  const isLiked = likeIcons[index].getAttribute('data-isLiked');
+
+  if (isLiked === 'false') {
+    likeIcons[index].setAttribute('data-isLiked', true);
+    likes[index].innerText = likesValue + 1;
+    totalLikes.innerText = totalLikesValue + 1;
+  }
+
+  if (isLiked === 'true') {
+    likeIcons[index].setAttribute('data-isLiked', false);
+    likes[index].innerText = likesValue - 1;
+    totalLikes.innerText = totalLikesValue - 1;
+  }
 }
