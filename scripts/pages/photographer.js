@@ -1,15 +1,15 @@
 // Create section for photographer medias
 const mediaList = document.createElement('section');
 mediaList.setAttribute('id', 'media-section');
-// Create section for gallery modal
 
+// Global variables
 const photographersSection = document.querySelector('.photographer_section');
 let photographer;
 let photographerMedias = [];
 
-// gestion des médias
 // eslint-disable-next-line no-unused-vars
 async function getProfileContent (id, photographers, medias) {
+  // Remove 'Nos Photographes'
   document.querySelector('header').querySelector('h1').innerHTML = '';
 
   _getPhotographer(id, photographers);
@@ -20,22 +20,6 @@ async function getProfileContent (id, photographers, medias) {
   _buildMediasGallery();
   _buildSortOptions();
   _buildLikesAndDailyFeeTag();
-
-  const optionsDOM = document.querySelectorAll('.option');
-  optionsDOM.forEach(option => option.addEventListener('click', (e) => {
-    e.preventDefault();
-    optionsDOM.forEach(option => {
-      option.classList.toggle('visible');
-    });
-
-    option.classList.toggle('active');
-    if (option.classList.contains('active')) {
-      _handleSortClick(option.getAttribute('name'));
-      document.querySelectorAll('.media-card').forEach(article => article.remove());
-
-      _buildMediasGallery(id, photographerMedias);
-    }
-  }));
 }
 
 /// /// General /// ///
