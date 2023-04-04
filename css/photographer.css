@@ -201,6 +201,7 @@
   transform: translate(-50%, -50%);
   font-size: 6em;
   color: rgba(255, 255, 255, 0.75);
+  pointer-events: none;
 }
 
 #media-section .user-media__description {
