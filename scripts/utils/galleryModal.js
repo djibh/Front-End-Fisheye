@@ -1,13 +1,18 @@
 const modal = document.querySelector('.modal-gallery');
 const galleryMedia = document.querySelector('.modal-gallery__media');
-const closeBtn = document.querySelector('.close-btn');
-const leftChevron = document.querySelector('.fa-chevron-left');
-const rightChevron = document.querySelector('.fa-chevron-right');
+
 let currentIndex;
 
 /// /// Modal /// ///
 // eslint-disable-next-line no-unused-vars
 function showModal (index) {
+  const closeBtn = document.querySelector('.close-btn');
+  closeBtn.setAttribute('aria-label', 'Fermeture du média');
+  const leftChevron = document.querySelector('.fa-chevron-left');
+  leftChevron.setAttribute('aria-label', 'Média précédent');
+  const rightChevron = document.querySelector('.fa-chevron-right');
+  rightChevron.setAttribute('aria-label', 'Média suivant');
+
   currentIndex = index;
   modalMediaModel = mediaFactory(photographerMedias[currentIndex]);
   modalMediaDOM = modalMediaModel.getModalMediaDOM();
@@ -22,11 +27,8 @@ function showModal (index) {
   document.onkeydown = onArrowsKeydown;
 
   closeBtn.addEventListener('click', hideModal);
-  closeBtn.setAttribute('aria-label', 'Fermeture du média');
   rightChevron.addEventListener('click', _nextMedia);
-  rightChevron.setAttribute('aria-label', 'Média suivant');
   leftChevron.addEventListener('click', _prevMedia);
-  leftChevron.setAttribute('aria-label', 'Média précédent');
 
   trapFocusGalleryModal();
 }
