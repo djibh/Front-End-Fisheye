@@ -16,7 +16,7 @@ function displayModal () {
   contactModal.style.display = 'block';
   contactModal.setAttribute('aria-modal', 'true');
   contactModal.setAttribute('aria-hidden', 'false');
-  // document.getElementById('contact-lastName').focus();
+  document.getElementById('contact-lastName').focus();
   trapFocusContactModal();
 
   const contactForm = document.forms['contact-form'];

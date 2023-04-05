@@ -12,7 +12,7 @@
   background-color: rgba(255, 255, 255, 0.95);
 }
 
-#contact-modal header {
+#contact-modal .contact-header {
   position: relative;
   display: flex;
   margin: 0;
@@ -20,7 +20,7 @@
   align-items: start;
 }
 
-#contact-modal header h1 {
+#contact-modal .contact-header h1 {
   margin: 0;
 }
 
