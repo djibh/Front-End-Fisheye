@@ -89,7 +89,7 @@ function trapFocusContactModal () {
         lastFocusItem.focus();
         e.preventDefault();
       }
-      // else = tab only is pressed
+    // else = tab only is pressed
     } else {
       if (document.activeElement === lastFocusItem) {
         firstFocusItem.focus();

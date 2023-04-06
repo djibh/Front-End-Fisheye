@@ -131,7 +131,6 @@ function onArrowsKeydown (e) {
     case 'Escape':
       if (modal.style.display === 'block') { hideModal(); }
       if (contactModal.style.display === 'block') { closeContactModal(); }
-
       break;
   }
 }

@@ -352,11 +352,6 @@
   object-fit: cover;
 }
 
-
-.modal-gallery__media h4 {
-  text-align: left;
-}
-
 .modal-gallery__media img,
 video {
   border-radius: 5px;
@@ -366,4 +361,5 @@ video {
 .modal-gallery__media h4 {
   width: 100%;
   color: #901c1c;
+  text-align: left;
 }
