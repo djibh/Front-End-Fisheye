@@ -6,7 +6,7 @@ function buildSortOptions () {
   const mediaSection = document.getElementById('media-section');
   const dropdownSortContainer = document.createElement('div');
   dropdownSortContainer.setAttribute('id', 'sort-container');
-  const sortTitle = document.createElement('h3');
+  const sortTitle = document.createElement('strong');
   sortTitle.innerText = 'Trier par';
 
   const optionsList = document.createElement('ul');

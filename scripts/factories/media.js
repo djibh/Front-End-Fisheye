@@ -21,7 +21,7 @@ function mediaFactory (data) {
     likeCount.innerText = likes;
     const likesContainer = document.createElement('div');
     likesContainer.classList.add('likes-container');
-    const heartIcon = document.createElement('i');
+    const heartIcon = document.createElement('em');
     heartIcon.classList.add('fa-regular');
     heartIcon.classList.add('fa-heart');
     heartIcon.classList.add('heart-outlined');
@@ -43,6 +43,7 @@ function mediaFactory (data) {
       videoDiv.classList.add('video-icon-container');
       const userVideo = document.createElement('video');
       userVideo.classList.add('user-media');
+      userVideo.setAttribute('preload', 'metadata');
       userVideo.setAttribute('src', mediaPath + video);
       userVideo.setAttribute('type', 'video/mp4');
       userVideo.setAttribute('title', title);
@@ -69,7 +70,7 @@ function mediaFactory (data) {
     if (image) {
       const modalImage = document.createElement('img');
       modalImage.setAttribute('src', mediaPath + image);
-      modalImage.setAttribute('aria-labelledby', title);
+      modalImage.setAttribute('alt', title);
       mediaDiv.appendChild(modalImage);
       article.appendChild(mediaDiv);
       return article;
@@ -78,7 +79,7 @@ function mediaFactory (data) {
       modalVideo.setAttribute('src', mediaPath + video);
       modalVideo.setAttribute('type', 'video/mp4');
       modalVideo.setAttribute('controls', '');
-      modalVideo.setAttribute('aria-labelledby', title);
+      modalVideo.setAttribute('alt', title);
 
       mediaDiv.appendChild(modalVideo);
       article.appendChild(mediaDiv);

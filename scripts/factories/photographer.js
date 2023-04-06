@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function photographerFactory (data) {
   const { id, name, city, country, tagline, price, portrait } = data;
 
@@ -33,7 +34,7 @@ function photographerFactory (data) {
     link.classList.add('photograph-link');
     const img = document.createElement('img');
     img.setAttribute('src', picture);
-    img.setAttribute('aria-labelledby', name);
+    img.setAttribute('alt', name);
     const h2 = document.createElement('h2');
     h2.textContent = name;
     link.appendChild(img);
