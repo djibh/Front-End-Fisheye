@@ -4,6 +4,7 @@ const mainDocument = document.getElementById('main');
 
 contactCloseBtn.addEventListener('click', closeContactModal);
 
+// open modal for contact
 // eslint-disable-next-line no-unused-vars
 function displayModal () {
   // create white lightbox for contact form
@@ -12,7 +13,7 @@ function displayModal () {
   mainDocument.setAttribute('aria-hidden', 'true');
   document.body.appendChild(lightbox);
 
-  // shof contact form
+  // show contact form
   contactModal.style.display = 'block';
   contactModal.setAttribute('aria-modal', 'true');
   contactModal.setAttribute('aria-hidden', 'false');
@@ -26,6 +27,7 @@ function displayModal () {
   });
 }
 
+// check inputs for contact form
 function formValidation (form) {
   const contactFirstName = document.getElementById('contact-firstName');
   const contactLastName = document.getElementById('contact-lastName');
@@ -66,6 +68,7 @@ function formValidation (form) {
   closeContactModal();
 }
 
+// close contact modal and update aria hidden attributes
 function closeContactModal () {
   contactModal.style.display = 'none';
   contactModal.setAttribute('aria-hidden', 'true');
@@ -73,6 +76,7 @@ function closeContactModal () {
   document.getElementById('contact-modal-lightbox').remove();
 }
 
+// used to be able to keep the focus in the form while tabbing
 function trapFocusContactModal () {
   const focusItems = contactModal.querySelectorAll('button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled])');
   const firstFocusItem = focusItems[0];

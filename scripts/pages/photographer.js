@@ -7,6 +7,7 @@ const photographersSection = document.querySelector('.photographer_section');
 let photographer;
 let photographerMedias = [];
 
+// build all DOM sections required for a photographer page
 // eslint-disable-next-line no-unused-vars
 async function getProfileContent (id, photographers, medias) {
   // Remove 'Nos Photographes'
@@ -24,12 +25,14 @@ async function getProfileContent (id, photographers, medias) {
 }
 
 /// /// General /// ///
+// Isolate one photographer using the ID
 function getPhotographer (id, photographers) {
   photographer = photographers.find(
     (photographer) => photographer.id === parseInt(id)
   );
 }
 
+// get medias for one photographer using the ID
 function getPhotographerMedias (id, medias) {
   photographerMedias = medias.filter(
     (media) => media.photographerId === parseInt(id)
@@ -37,6 +40,7 @@ function getPhotographerMedias (id, medias) {
 }
 
 /// /// UI /// ///
+// build DOM banner for contact section
 function buildContactSection () {
   // Clear photographer section for SPA navigation
   photographersSection.innerHTML = '';
@@ -50,8 +54,8 @@ function buildContactSection () {
   document.querySelector('.contact-button').addEventListener('click', displayModal);
 }
 
+// build DOM form contact form
 function buildContactForm () {
-  // build dom in existing modal
   const contactModal = document.getElementById('contact-modal');
   contactModal.setAttribute('role', 'dialog');
   const contactName = document.getElementById('contact-modal__photographer-name');
@@ -75,6 +79,7 @@ function buildContactForm () {
   contactModal.appendChild(form);
 }
 
+// build DOM grid to display medias fetched from json, using a factory
 function buildMediasGallery () {
   photographerMedias.forEach((media, idx) => {
     const mediaModel = mediaFactory(media);
@@ -92,6 +97,7 @@ function buildMediasGallery () {
   });
 }
 
+// build DOM elements for bottom tag showing total likes and daily fee
 function buildLikesAndDailyFeeTag () {
   let likes = 0;
 

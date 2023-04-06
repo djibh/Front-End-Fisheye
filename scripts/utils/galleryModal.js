@@ -4,6 +4,7 @@ const galleryMedia = document.querySelector('.modal-gallery__media');
 let currentIndex;
 
 /// /// Modal /// ///
+// open modal for media gallery
 // eslint-disable-next-line no-unused-vars
 function showModal (index) {
   const closeBtn = document.querySelector('.close-btn');
@@ -33,6 +34,7 @@ function showModal (index) {
   trapFocusGalleryModal();
 }
 
+// hide media gallery modal
 function hideModal () {
   modal.style.display = 'none';
   galleryMedia.innerHTML = '';
@@ -40,6 +42,7 @@ function hideModal () {
   mainDocument.setAttribute('aria-hidden', 'false');
 }
 
+// show previous media in gallery modal
 function _prevMedia () {
   currentIndex <= 0
     ? (currentIndex = photographerMedias.length - 1)
@@ -47,6 +50,7 @@ function _prevMedia () {
   _replaceModalContent();
 }
 
+// show next media in gallery modal
 function _nextMedia () {
   currentIndex >= photographerMedias.length - 1
     ? (currentIndex = 0)
@@ -54,11 +58,13 @@ function _nextMedia () {
   _replaceModalContent();
 }
 
+// refresh media content when fetching previous/next media
 function _replaceModalContent () {
   modalMediaDOM = mediaFactory(photographerMedias[currentIndex]).getModalMediaDOM();
   galleryMedia.firstChild.replaceWith(modalMediaDOM);
 }
 
+// used to keep focus in gallery modal while tabbing
 function trapFocusGalleryModal () {
   const focusItems = contactModal.querySelectorAll('button:not([disabled]), img, video');
   const firstFocusItem = focusItems[0];

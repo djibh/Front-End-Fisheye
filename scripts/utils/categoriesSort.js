@@ -1,3 +1,4 @@
+// DOM elements for sort options dropdown
 // eslint-disable-next-line no-unused-vars
 function buildSortOptions () {
   const optionsLabel = ['Popularité', 'Date', 'Titre'];
@@ -45,6 +46,7 @@ function buildSortOptions () {
   optionsDOM.forEach(option => option.addEventListener('click', (e) => handleSortDropdownOptions(e, optionsDOM, option)));
 }
 
+// sort medias displayed in modal gallery
 // eslint-disable-next-line no-unused-vars
 function handleSort (prop = 'date') {
   photographerMedias.sort(function (a, b) {
@@ -55,6 +57,7 @@ function handleSort (prop = 'date') {
   });
 }
 
+// change classes on sort options for styling purpose
 function handleSortDropdownOptions (e, domElements, option) {
   e.preventDefault();
   domElements.forEach(option => {
