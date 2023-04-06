@@ -1,10 +1,12 @@
+// Factory pattern: here we use data to build photographers grid for the landing page
 // eslint-disable-next-line no-unused-vars
-function photographerFactory (data) {
+function photographerFactory(data) {
   const { id, name, city, country, tagline, price, portrait } = data;
 
   const picture = `assets/photographers/${portrait}`;
 
-  function getUserCardDOM () {
+  // build DOM elements for photographer cards
+  function getUserCardDOM() {
     const article = document.createElement('article');
     const link = createArticleLink();
     const description = createArticleDescription();
@@ -14,7 +16,8 @@ function photographerFactory (data) {
     return article;
   }
 
-  function getContactSectionDOM () {
+  // build DOM elements for photographer contact section
+  function getContactSectionDOM() {
     const section = document.createElement('section');
     section.classList.add('contact-section');
     const nameDiv = createNameDiv();
@@ -27,7 +30,8 @@ function photographerFactory (data) {
     return section;
   }
 
-  function createArticleLink () {
+  // build and return link DOM for photographer cards
+  function createArticleLink() {
     const link = document.createElement('a');
     link.setAttribute('href', 'javascript:void(0)');
     link.setAttribute('id', id);
@@ -43,7 +47,8 @@ function photographerFactory (data) {
     return link;
   }
 
-  function createArticleDescription () {
+  // build and return description DOM elements for photographer cards
+  function createArticleDescription() {
     const description = document.createElement('div');
     description.classList.add('description');
     const location = document.createElement('h3');
@@ -59,7 +64,8 @@ function photographerFactory (data) {
     return description;
   }
 
-  function createNameDiv () {
+  // build and return text info DOM elements for contact section
+  function createNameDiv() {
     const nameDiv = document.createElement('div');
     nameDiv.classList.add('photograph-info');
     const h2 = document.createElement('h2');
@@ -75,7 +81,8 @@ function photographerFactory (data) {
     return nameDiv;
   }
 
-  function createContactDiv () {
+  // build and return DOM elements for contact button
+  function createContactDiv() {
     const contactDiv = document.createElement('div');
     const button = document.createElement('button');
     button.setAttribute('type', 'button');
@@ -89,7 +96,8 @@ function photographerFactory (data) {
     return contactDiv;
   }
 
-  function createPhotoDiv () {
+  // build and return the profile photo DOM elements for contact section
+  function createPhotoDiv() {
     const photoDiv = document.createElement('div');
     const img = document.createElement('img');
     img.setAttribute('src', picture);

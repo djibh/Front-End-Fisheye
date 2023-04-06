@@ -6,7 +6,7 @@ contactCloseBtn.addEventListener('click', closeContactModal);
 
 // open modal for contact
 // eslint-disable-next-line no-unused-vars
-function displayModal () {
+function displayModal() {
   // create white lightbox for contact form
   const lightbox = document.createElement('div');
   lightbox.setAttribute('id', 'contact-modal-lightbox');
@@ -28,7 +28,7 @@ function displayModal () {
 }
 
 // check inputs for contact form
-function formValidation (form) {
+function formValidation(form) {
   const contactFirstName = document.getElementById('contact-firstName');
   const contactLastName = document.getElementById('contact-lastName');
   const contactEmail = document.getElementById('contact-email');
@@ -69,7 +69,7 @@ function formValidation (form) {
 }
 
 // close contact modal and update aria hidden attributes
-function closeContactModal () {
+function closeContactModal() {
   contactModal.style.display = 'none';
   contactModal.setAttribute('aria-hidden', 'true');
   mainDocument.setAttribute('aria-hidden', 'false');
@@ -77,12 +77,12 @@ function closeContactModal () {
 }
 
 // used to be able to keep the focus in the form while tabbing
-function trapFocusContactModal () {
+function trapFocusContactModal() {
   const focusItems = contactModal.querySelectorAll('button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled])');
   const firstFocusItem = focusItems[0];
   const lastFocusItem = focusItems[focusItems.length - 1];
 
-  contactModal.addEventListener('keydown', function (e) {
+  contactModal.addEventListener('keydown', function(e) {
     const isTabPressed = (e.key === 'Tab');
 
     if (!isTabPressed) { return; }

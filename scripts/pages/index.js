@@ -1,5 +1,5 @@
 // fetch data from json
-async function getPhotographers () {
+async function getPhotographers() {
   const requestData = await fetch('./data/photographers.json');
   const json = await requestData.json();
   const photographers = json.photographers;
@@ -12,7 +12,7 @@ async function getPhotographers () {
 }
 
 // build and show DOM elements created via factories using fetched data
-async function displayData (photographers, medias) {
+async function displayData(photographers, medias) {
   const photographersSection = document.querySelector('.photographer_section');
 
   photographers.forEach((photographer) => {
@@ -30,7 +30,7 @@ async function displayData (photographers, medias) {
 }
 
 // entry point for the scripts
-async function init () {
+async function init() {
   // Récupère les datas des photographes
   const { photographers, medias } = await getPhotographers();
   displayData(photographers, medias);

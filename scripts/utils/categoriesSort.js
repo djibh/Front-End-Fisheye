@@ -1,6 +1,6 @@
 // DOM elements for sort options dropdown
 // eslint-disable-next-line no-unused-vars
-function buildSortOptions () {
+function buildSortOptions() {
   const optionsLabel = ['Popularité', 'Date', 'Titre'];
   const optionsName = ['likes', 'date', 'title'];
 
@@ -48,8 +48,8 @@ function buildSortOptions () {
 
 // sort medias displayed in modal gallery
 // eslint-disable-next-line no-unused-vars
-function handleSort (prop = 'date') {
-  photographerMedias.sort(function (a, b) {
+function handleSort(prop = 'date') {
+  photographerMedias.sort(function(a, b) {
     if (prop === 'likes') {
       if (a[prop] > b[prop]) { return -1; } else { return 1; }
     }
@@ -58,7 +58,7 @@ function handleSort (prop = 'date') {
 }
 
 // change classes on sort options for styling purpose
-function handleSortDropdownOptions (e, domElements, option) {
+function handleSortDropdownOptions(e, domElements, option) {
   e.preventDefault();
   domElements.forEach(option => {
     option.classList.toggle('visible');

@@ -1,10 +1,12 @@
+// Factory pattern: here we use data to build gallery media card DOM and media shown in modal
 // eslint-disable-next-line no-unused-vars
-function mediaFactory (data) {
+function mediaFactory(data) {
   const { photographerId, title, image, video, likes } = data;
 
   const mediaPath = `assets/images/${photographerId}/`;
 
-  function getMediaCardDOM () {
+  // build and return DOM elements for media gallery
+  function getMediaCardDOM() {
     const article = document.createElement('article');
     article.classList.add('media-card');
     const link = document.createElement('a');
@@ -57,7 +59,8 @@ function mediaFactory (data) {
     return article;
   }
 
-  function getModalMediaDOM () {
+  // build and return a single media DOM elements for media modal
+  function getModalMediaDOM() {
     const article = document.createElement('article');
     const mediaDiv = document.createElement('div');
     mediaDiv.classList.add('media-container');

@@ -9,13 +9,15 @@ let photographerMedias = [];
 
 // build all DOM sections required for a photographer page
 // eslint-disable-next-line no-unused-vars
-async function getProfileContent (id, photographers, medias) {
-  // Remove 'Nos Photographes'
+async function getProfileContent(id, photographers, medias) {
+  // Remove 'Nos Photographes' title
   document.querySelector('header').querySelector('h1').innerHTML = '';
 
+  // get info for DOM building
   getPhotographer(id, photographers);
   getPhotographerMedias(photographer.id, medias);
 
+  // build DOM
   buildContactSection();
   buildContactForm();
   handleSort('likes');
@@ -26,14 +28,14 @@ async function getProfileContent (id, photographers, medias) {
 
 /// /// General /// ///
 // Isolate one photographer using the ID
-function getPhotographer (id, photographers) {
+function getPhotographer(id, photographers) {
   photographer = photographers.find(
     (photographer) => photographer.id === parseInt(id)
   );
 }
 
 // get medias for one photographer using the ID
-function getPhotographerMedias (id, medias) {
+function getPhotographerMedias(id, medias) {
   photographerMedias = medias.filter(
     (media) => media.photographerId === parseInt(id)
   );
@@ -41,7 +43,7 @@ function getPhotographerMedias (id, medias) {
 
 /// /// UI /// ///
 // build DOM banner for contact section
-function buildContactSection () {
+function buildContactSection() {
   // Clear photographer section for SPA navigation
   photographersSection.innerHTML = '';
   photographersSection.style.display = 'block';
@@ -55,7 +57,7 @@ function buildContactSection () {
 }
 
 // build DOM form contact form
-function buildContactForm () {
+function buildContactForm() {
   const contactModal = document.getElementById('contact-modal');
   contactModal.setAttribute('role', 'dialog');
   const contactName = document.getElementById('contact-modal__photographer-name');
@@ -80,7 +82,7 @@ function buildContactForm () {
 }
 
 // build DOM grid to display medias fetched from json, using a factory
-function buildMediasGallery () {
+function buildMediasGallery() {
   photographerMedias.forEach((media, idx) => {
     const mediaModel = mediaFactory(media);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
@@ -98,7 +100,7 @@ function buildMediasGallery () {
 }
 
 // build DOM elements for bottom tag showing total likes and daily fee
-function buildLikesAndDailyFeeTag () {
+function buildLikesAndDailyFeeTag() {
   let likes = 0;
 
   photographerMedias.forEach((media) => {
@@ -124,8 +126,9 @@ function buildLikesAndDailyFeeTag () {
 /// /// /// /// /// /// /// ///
 
 /// /// Keyboard /// ///
+// key binding management
 // eslint-disable-next-line no-unused-vars
-function onArrowsKeydown (e) {
+function onArrowsKeydown(e) {
   e = e || window.event;
   switch (e.key) {
     case 'ArrowLeft':
@@ -141,7 +144,8 @@ function onArrowsKeydown (e) {
   }
 }
 
-function handleLikeButton (index) {
+// change the heart icon for like feature and update counts
+function handleLikeButton(index) {
   const totalLikes = document.getElementById('likes-and-fee-tag__likes');
   const likes = document.querySelectorAll('.user-media__likes');
   const likeIcons = document.querySelectorAll('.heart-outlined');
