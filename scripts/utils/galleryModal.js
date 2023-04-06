@@ -15,8 +15,8 @@ function showModal(index) {
   rightChevron.setAttribute('aria-label', 'Média suivant');
 
   currentIndex = index;
-  modalMediaModel = mediaFactory(photographerMedias[currentIndex]);
-  modalMediaDOM = modalMediaModel.getModalMediaDOM();
+  const modalMediaModel = mediaFactory(photographerMedias[currentIndex]);
+  const modalMediaDOM = modalMediaModel.getModalMediaDOM();
 
   galleryMedia.appendChild(modalMediaDOM);
   modal.style.display = 'block';
@@ -44,15 +44,17 @@ function hideModal() {
 
 // show previous media in gallery modal
 function _prevMedia() {
+  const setIndex = photographerMedias.length - 1;
   currentIndex <= 0
-    ? (currentIndex = photographerMedias.length - 1)
+    ? (currentIndex = setIndex)
     : currentIndex--;
   _replaceModalContent();
 }
 
 // show next media in gallery modal
 function _nextMedia() {
-  currentIndex >= photographerMedias.length - 1
+  const setIndex = photographerMedias.length - 1;
+  currentIndex >= setIndex
     ? (currentIndex = 0)
     : currentIndex++;
   _replaceModalContent();

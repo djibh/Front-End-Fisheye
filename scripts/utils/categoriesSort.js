@@ -29,7 +29,6 @@ function buildSortOptions() {
     optionLabelLink.innerText = label;
     optionLabel.appendChild(optionLabelLink);
 
-    // idx !== 0 || optionLabel.classList.add('active');
     if (idx === 0) {
       optionLabel.classList.add('active');
       optionLabelLink.setAttribute('aria-selected', 'true');
